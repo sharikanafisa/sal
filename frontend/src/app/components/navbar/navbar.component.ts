@@ -11,15 +11,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       <div class="nav-container">
         <!-- Logo Emblem -->
         <a routerLink="/" class="nav-brand">
-          <div class="spider-logo-box">
-            <svg viewBox="0 0 24 24" fill="none" class="spider-icon" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L15 8L21 6L18 12L22 18L15 16L12 22L9 16L2 18L6 12L3 6L9 8L12 2Z" fill="currentColor"/>
-              <circle cx="12" cy="12" r="3" fill="#07070a"/>
+          <div class="brand-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="brand-icon" style="width:20px; height:20px;">
+              <path d="M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM16 2v4M8 2v4M3 10h18"/>
             </svg>
           </div>
           <div class="brand-text">
-            <span class="brand-title">BARBER<span class="highlight">SLOT</span></span>
-            <span class="brand-tag">INSTANT BOOKING</span>
+            <span class="brand-title">RESERVATION <span class="highlight">PORTAL</span></span>
+            <span class="brand-tag">EXECUTIVE SYSTEM</span>
           </div>
         </a>
 
