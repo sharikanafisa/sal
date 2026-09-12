@@ -197,10 +197,10 @@ interface ServiceOption {
                   type="tel" 
                   class="form-input"
                   [class.invalid]="phoneError"
-                  placeholder="e.g. +1 555 019 2831 or 10-digit number"
+                  placeholder="e.g. 9876543210 (10-digit Indian number)"
                   [(ngModel)]="whatsappNumber"
                   (input)="phoneError = false">
-                <p *ngIf="phoneError" class="error-text">Please enter a valid WhatsApp number (minimum 7-15 digits).</p>
+                <p *ngIf="phoneError" class="error-text">Please enter a valid 10-digit Indian mobile number (e.g. 9876543210).</p>
               </div>
 
               <div class="form-group">
@@ -1041,12 +1041,18 @@ export class BookingPageComponent implements OnInit {
     }
   }
 
+  isValidIndianPhone(phone: string): boolean {
+    if (!phone) return false;
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length === 10) return /^[6-9]\d{9}$/.test(digits);
+    if (digits.length === 12 && digits.startsWith('91')) return /^91[6-9]\d{9}$/.test(digits);
+    if (digits.length === 11 && digits.startsWith('0')) return /^0[6-9]\d{9}$/.test(digits);
+    return false;
+  }
+
   validateAndProceedToSummary() {
     this.nameError = !this.customerName || !this.customerName.trim();
-    
-    // WhatsApp format validation (minimum 7 digits)
-    const digitsOnly = this.whatsappNumber.replace(/\D/g, '');
-    this.phoneError = !this.whatsappNumber || digitsOnly.length < 7 || digitsOnly.length > 15;
+    this.phoneError = !this.whatsappNumber || !this.isValidIndianPhone(this.whatsappNumber);
 
     if (!this.nameError && !this.phoneError) {
       this.goToStep(4);

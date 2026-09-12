@@ -19,12 +19,15 @@ function generateBookingId() {
 }
 
 /**
- * Validate WhatsApp number format (E.164 or 10-15 digit string)
+ * Validate Indian mobile number format (10 digits starting with 6,7,8,9 or with +91)
  */
-function isValidWhatsApp(phone) {
+function isValidIndianPhone(phone) {
   if (!phone) return false;
-  const digitsOnly = phone.replace(/\D/g, '');
-  return digitsOnly.length >= 7 && digitsOnly.length <= 15;
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 10) return /^[6-9]\d{9}$/.test(digits);
+  if (digits.length === 12 && digits.startsWith('91')) return /^91[6-9]\d{9}$/.test(digits);
+  if (digits.length === 11 && digits.startsWith('0')) return /^0[6-9]\d{9}$/.test(digits);
+  return false;
 }
 
 /**
@@ -82,8 +85,8 @@ exports.createBooking = (req, res) => {
     if (!customerName || !customerName.trim()) {
       return res.status(400).json({ error: 'Full Name is required' });
     }
-    if (!whatsappNumber || !isValidWhatsApp(whatsappNumber)) {
-      return res.status(400).json({ error: 'A valid WhatsApp phone number is required' });
+    if (!whatsappNumber || !isValidIndianPhone(whatsappNumber)) {
+      return res.status(400).json({ error: 'Please enter a valid 10-digit Indian mobile number (e.g. 9876543210)' });
     }
     if (!service || !['Haircut', 'Beard Trim', 'Haircut + Beard', 'Hair Styling'].includes(service)) {
       return res.status(400).json({ error: 'Please select a valid service' });
@@ -194,8 +197,10 @@ exports.searchBooking = (req, res) => {
       return res.status(400).json({ error: 'Please enter a Booking ID or WhatsApp number' });
     }
 
-    const cleanQuery = query.trim();
-    const cleanDigits = cleanQuery.replace(/\D/g, '');
+    const rawQuery = query.trim();
+    const cleanDigits = rawQuery.replace(/\D/g, '');
+    const searchPattern = `%${rawQuery}%`;
+    const digitsPattern = `%${cleanDigits}%`;
 
     const bookings = db.prepare(`
       SELECT 
@@ -209,10 +214,13 @@ exports.searchBooking = (req, res) => {
         status,
         created_at as createdAt
       FROM appointments 
-      WHERE UPPER(booking_id) = UPPER(?) 
-         OR whatsapp_number LIKE ?
+      WHERE UPPER(booking_id) LIKE UPPER(?) 
+         OR REPLACE(UPPER(booking_id), '-', '') LIKE UPPER(?)
+         OR (whatsapp_number LIKE ? AND LENGTH(?) > 0)
+         OR UPPER(customer_name) LIKE UPPER(?)
+         OR UPPER(appointment_time) LIKE UPPER(?)
       ORDER BY appointment_date DESC, appointment_time DESC
-    `).all(cleanQuery, `%${cleanDigits || cleanQuery}%`);
+    `).all(searchPattern, searchPattern, digitsPattern, cleanDigits, searchPattern, searchPattern);
 
     return res.json({ bookings });
   } catch (err) {

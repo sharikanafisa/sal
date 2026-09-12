@@ -18,15 +18,15 @@
       --bg-secondary: #0d0d0d;
       --bg-surface: #141414;
       --bg-glass: rgba(20, 20, 20, 0.85);
-      --border-subtle: rgba(255, 255, 255, 0.12);
-      --border-accent: rgba(198, 161, 91, 0.35);
-      --text-main: #f5f2ea;
-      --text-muted: #9b9b95;
-      --text-dim: #64645f;
-      --accent-gold: #c6a15b;
-      --accent-gold-light: #e6c665;
-      --accent-gold-dark: #8c6f37;
-      --accent-gold-glow: rgba(198, 161, 91, 0.28);
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      --border-accent: rgba(196, 177, 151, 0.3);
+      --text-main: #f8f6f0;
+      --text-muted: #a3a19b;
+      --text-dim: #6b6963;
+      --accent-gold: #c4b197;
+      --accent-gold-light: #dad0bf;
+      --accent-gold-dark: #8c7d66;
+      --accent-gold-glow: rgba(196, 177, 151, 0.18);
       --accent-emerald: #10b981;
       
       --font-display: 'Cinzel', serif;
@@ -493,7 +493,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">WhatsApp Number *</label>
-              <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. +1 555 019 2831 (min 7 digits)">
+              <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. 9876543210 (10-digit Indian number)">
             </div>
             <div class="form-group">
               <label class="form-label">Email Address (Optional)</label>
@@ -559,7 +559,7 @@
         </header>
         <div class="glass-card" style="margin-bottom:24px; padding:22px;">
           <div style="display:flex; gap:14px;">
-            <input type="text" id="my-search-input" class="form-input" placeholder="e.g. SP-97371 or WhatsApp number">
+            <input type="text" id="my-search-input" class="form-input" placeholder="e.g. SP-97371, 97371 or WhatsApp number" onkeyup="if(event.key==='Enter') searchBooking()">
             <button class="btn-gold" style="width:auto; padding:0 32px;" onclick="searchBooking()">SEARCH</button>
           </div>
         </div>
@@ -623,17 +623,17 @@
         ctx.fillStyle = '#050505';
         ctx.fillRect(0, 0, width, height);
 
-        // Soft Living Ambient Light Ray 1 (Gold Light Beam)
+        // Soft Living Ambient Light Ray 1 (Platinum Champagne Light Beam)
         const lightX1 = width * 0.35 + Math.sin(time * 0.3) * (width * 0.15);
         const lightY1 = height * 0.3 + Math.cos(time * 0.25) * (height * 0.1);
         const grad1 = ctx.createRadialGradient(lightX1, lightY1, 10, lightX1, lightY1, width * 0.5);
-        grad1.addColorStop(0, 'rgba(198, 161, 91, 0.08)');
-        grad1.addColorStop(0.6, 'rgba(198, 161, 91, 0.02)');
+        grad1.addColorStop(0, 'rgba(196, 177, 151, 0.05)');
+        grad1.addColorStop(0.6, 'rgba(196, 177, 151, 0.01)');
         grad1.addColorStop(1, 'rgba(5, 5, 5, 0)');
         ctx.fillStyle = grad1;
         ctx.fillRect(0, 0, width, height);
 
-        // Floating Gold Particles
+        // Floating Champagne Dust Particles
         particles.forEach(p => {
           p.y -= p.speedY;
           p.x += Math.sin(time + p.swayFreq * 100) * 0.3;
@@ -642,9 +642,9 @@
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(198, 161, 91, ${p.opacity})`;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = '#c6a15b';
+          ctx.fillStyle = `rgba(196, 177, 151, ${p.opacity * 0.7})`;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = '#c4b197';
           ctx.fill();
         });
 
@@ -660,6 +660,15 @@
     let currentStep = 1;
     let currentCalDate = new Date();
     const API_BASE = '/api';
+
+    function isValidIndianPhone(phone) {
+      if (!phone) return false;
+      const digits = phone.replace(/\D/g, '');
+      if (digits.length === 10) return /^[6-9]\d{9}$/.test(digits);
+      if (digits.length === 12 && digits.startsWith('91')) return /^91[6-9]\d{9}$/.test(digits);
+      if (digits.length === 11 && digits.startsWith('0')) return /^0[6-9]\d{9}$/.test(digits);
+      return false;
+    }
 
     function showView(name) {
       document.getElementById('view-booking').classList.add('hidden');
@@ -679,6 +688,9 @@
       } else if (name === 'admin') {
         document.getElementById('view-admin').classList.remove('hidden');
         document.getElementById('nav-admin').classList.add('active');
+        if (adminToken) {
+          loadAdminAppointments();
+        }
       }
     }
 
@@ -699,16 +711,20 @@
       if (step === 3 && (!selectedDate || !selectedTime)) return;
       if (step === 4) {
         const name = document.getElementById('cust-name').value.trim();
-        const phone = document.getElementById('cust-phone').value.replace(/\D/g, '');
-        if (!name || phone.length < 7) {
-          alert('Please enter your full name and a valid WhatsApp number.');
+        const rawPhone = document.getElementById('cust-phone').value.trim();
+        if (!name) {
+          alert('Please enter your full name.');
+          return;
+        }
+        if (!isValidIndianPhone(rawPhone)) {
+          alert('Please enter a valid 10-digit Indian WhatsApp phone number (e.g. 9876543210 or +919876543210).');
           return;
         }
         document.getElementById('sum-service').innerText = selectedService;
         document.getElementById('sum-date').innerText = selectedDate;
         document.getElementById('sum-time').innerText = selectedTime;
         document.getElementById('sum-name').innerText = name;
-        document.getElementById('sum-phone').innerText = document.getElementById('cust-phone').value;
+        document.getElementById('sum-phone').innerText = rawPhone;
       }
 
       currentStep = step;
@@ -870,6 +886,10 @@
         document.getElementById('conf-phone').innerText = data.booking.whatsappNumber;
 
         document.getElementById('confirmation-screen').classList.remove('hidden');
+
+        if (adminToken) {
+          loadAdminAppointments();
+        }
       } catch (err) {
         btn.disabled = false;
         btn.innerHTML = 'CONFIRM SLOT';
@@ -888,8 +908,11 @@
     async function searchBooking() {
       const q = document.getElementById('my-search-input').value.trim();
       const resContainer = document.getElementById('my-results');
-      if (!q) return;
-      resContainer.innerHTML = '<div style="color:var(--accent-gold); font-weight:700;">Searching...</div>';
+      if (!q) {
+        resContainer.innerHTML = '<div class="alert-error">Please enter your Booking ID or WhatsApp number.</div>';
+        return;
+      }
+      resContainer.innerHTML = '<div style="color:var(--accent-gold); font-weight:700; text-align:center; padding:20px;">Searching appointment details...</div>';
 
       try {
         const res = await fetch(`${API_BASE}/bookings/search?query=${encodeURIComponent(q)}`);
@@ -897,7 +920,7 @@
         resContainer.innerHTML = '';
 
         if (!data.bookings || data.bookings.length === 0) {
-          resContainer.innerHTML = '<div class="glass-card" style="text-align:center;">No appointments found.</div>';
+          resContainer.innerHTML = '<div class="glass-card" style="text-align:center; padding:30px;"><div style="font-size:1.2rem; font-weight:700; color:var(--text-muted); margin-bottom:8px;">No appointments found</div><div>Please check your Booking ID (e.g. SP-97371 or 97371) or 10-digit WhatsApp number.</div></div>';
           return;
         }
 
@@ -906,19 +929,26 @@
           card.className = 'glass-card';
           card.style.marginBottom = '18px';
           card.innerHTML = `
-            <div style="display:flex; justify-content:space-between; margin-bottom:14px;">
-              <strong style="font-family:var(--font-heading); font-size:1.15rem; color:var(--accent-gold);">ID: ${b.bookingId}</strong>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-dim); letter-spacing:0.1em; display:block;">BOOKING ID</span>
+                <strong style="font-family:var(--font-heading); font-size:1.3rem; color:var(--accent-gold);">${b.bookingId}</strong>
+              </div>
               <span class="badge-status status-${b.status}">${b.status.toUpperCase()}</span>
             </div>
-            <div style="font-size:1.05rem;">Service: <strong style="color:#ffffff;">${b.service}</strong></div>
-            <div style="font-size:1.05rem;">Date & Time: <strong style="color:#ffffff;">${b.appointmentDate} at ${b.appointmentTime}</strong></div>
-            <div style="font-size:1.05rem;">Name: <strong style="color:#ffffff;">${b.customerName}</strong> (${b.whatsappNumber})</div>
-            ${b.status === 'confirmed' ? `<button class="btn-secondary" style="margin-top:16px; border-color:var(--accent-gold); color:var(--accent-gold);" onclick="cancelAppt('${b.bookingId}')">Cancel Appointment</button>` : ''}
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:1rem; margin-bottom:14px;">
+              <div><span style="color:var(--text-muted); font-size:0.85rem; display:block;">Service</span><strong style="color:var(--text-main);">${b.service}</strong></div>
+              <div><span style="color:var(--text-muted); font-size:0.85rem; display:block;">Customer</span><strong style="color:var(--text-main);">${b.customerName}</strong></div>
+              <div><span style="color:var(--text-muted); font-size:0.85rem; display:block;">Date</span><strong style="color:var(--text-main);">${b.appointmentDate}</strong></div>
+              <div><span style="color:var(--text-muted); font-size:0.85rem; display:block;">Time Slot</span><strong style="color:var(--accent-gold);">${b.appointmentTime}</strong></div>
+              <div style="grid-column: span 2;"><span style="color:var(--text-muted); font-size:0.85rem; display:block;">WhatsApp Number</span><strong style="color:var(--text-main);">${b.whatsappNumber}</strong></div>
+            </div>
+            ${b.status === 'confirmed' ? `<button class="btn-secondary" style="width:100%; margin-top:8px; border-color:rgba(239,68,68,0.4); color:#f87171;" onclick="cancelAppt('${b.bookingId}')">CANCEL THIS APPOINTMENT</button>` : ''}
           `;
           resContainer.appendChild(card);
         });
       } catch (err) {
-        resContainer.innerHTML = '<div class="alert-error">Failed to search booking.</div>';
+        resContainer.innerHTML = '<div class="alert-error">Failed to search booking. Connection error.</div>';
       }
     }
 
@@ -929,6 +959,7 @@
         if (res.ok) {
           alert('Appointment cancelled successfully. Slot is now free again.');
           searchBooking();
+          if (adminToken) loadAdminAppointments();
         }
       } catch (err) { alert('Failed to cancel appointment'); }
     }
@@ -958,6 +989,7 @@
     }
 
     async function loadAdminAppointments() {
+      if (!adminToken) return;
       try {
         const res = await fetch(`${API_BASE}/admin/appointments`, { headers: { 'Authorization': 'Bearer ' + adminToken } });
         const data = await res.json();
@@ -970,6 +1002,13 @@
         tbl.innerHTML = html;
       } catch (err) {}
     }
+
+    // Auto-refresh Admin Dashboard every 5 seconds when logged in
+    setInterval(() => {
+      if (adminToken && !document.getElementById('admin-dash').classList.contains('hidden')) {
+        loadAdminAppointments();
+      }
+    }, 5000);
 
     /* Init State */
     const todayStr = new Date().toISOString().split('T')[0];
