@@ -69,7 +69,6 @@ interface ServiceOption {
                 <div class="service-icon-box" [innerHTML]="s.iconSvg"></div>
                 <div class="service-info">
                   <h3 class="service-name">{{ s.name }}</h3>
-                  <span class="service-duration">{{ s.duration }}</span>
                 </div>
                 <div class="radio-indicator">
                   <div class="radio-inner" *ngIf="selectedService === s.name"></div>
