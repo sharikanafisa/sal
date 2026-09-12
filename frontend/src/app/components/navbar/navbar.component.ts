@@ -19,7 +19,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           </div>
           <div class="brand-text">
             <span class="brand-title">BARBER<span class="highlight">SLOT</span></span>
-            <span class="brand-tag">ONE BARBER ONLY</span>
+            <span class="brand-tag">INSTANT BOOKING</span>
           </div>
         </a>
 

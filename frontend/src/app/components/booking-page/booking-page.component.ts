@@ -22,7 +22,7 @@ interface ServiceOption {
         <!-- Header Banner -->
         <header class="booking-header">
           <div class="badge-tag">
-            <span class="web-dot"></span> 1 BARBER ONLY
+            <span class="web-dot"></span> INSTANT SLOT LOCK
           </div>
           <h1 class="main-title">BOOK YOUR SLOT</h1>
           <p class="subtitle">Choose your service, date and preferred time.</p>
