@@ -1,15 +1,16 @@
-/* Executive Grooming Luxury Color Tokens */
+/* Dark Modern Street-Culture Tech Design System */
 :root {
-  --bg-dark: #07080c;
-  --bg-card: rgba(14, 16, 26, 0.88);
-  --bg-card-hover: rgba(22, 26, 40, 0.95);
-  --accent-gold: #d4af37;
-  --accent-gold-light: #f4e095;
-  --accent-gold-dark: #a38118;
-  --accent-gold-glow: rgba(212, 175, 55, 0.35);
-  --accent-emerald: #10b981;
-  --border-card: rgba(212, 175, 55, 0.25);
-  --border-active: #d4af37;
+  --bg-dark: #0a0b10;
+  --bg-card: rgba(14, 16, 24, 0.92);
+  --bg-card-hover: rgba(20, 24, 36, 0.96);
+  --accent-blue: #00f0ff;
+  --accent-blue-glow: rgba(0, 240, 255, 0.45);
+  --accent-red: #ff003b;
+  --accent-red-glow: rgba(255, 0, 59, 0.45);
+  --accent-green: #00ff9d;
+  --accent-green-glow: rgba(0, 255, 157, 0.45);
+  --border-card: rgba(0, 240, 255, 0.28);
+  --border-active: #00f0ff;
   --text-bright: #ffffff;
   --text-muted: #cbd5e1;
   --text-dim: #64748b;
@@ -38,8 +39,8 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: var(--accent-gold-dark); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
+::-webkit-scrollbar-thumb:hover { background: #33f3ff; }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -50,26 +51,26 @@ h1, h2, h3, h4, h5, h6 {
 /* Glass Panel */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   border: 1.5px solid var(--border-card);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
   transition: all 0.28s ease;
 }
 .glass-panel:hover {
-  border-color: var(--accent-gold);
-  box-shadow: 0 20px 55px rgba(212, 175, 55, 0.2);
+  border-color: var(--accent-blue);
+  box-shadow: 0 20px 55px rgba(0, 240, 255, 0.25);
 }
 
-/* Executive Action Button */
+/* Street Tech Button */
 .btn-spider {
-  background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
-  color: #07080c;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #00a8b8 100%);
+  color: #0a0b10;
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 1.05rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   border: none;
   border-radius: var(--radius-md);
@@ -79,14 +80,14 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 6px 25px var(--accent-gold-glow);
+  box-shadow: 0 6px 25px var(--accent-blue-glow);
   transition: all 0.25s ease;
   width: 100%;
 }
 .btn-spider:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 32px rgba(212, 175, 55, 0.55);
-  filter: brightness(1.1);
+  box-shadow: 0 10px 35px rgba(0, 240, 255, 0.6);
+  filter: brightness(1.15);
 }
 .btn-spider:disabled {
   opacity: 0.45;
@@ -98,17 +99,18 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary {
   background: rgba(255, 255, 255, 0.06);
   color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   border-radius: var(--radius-md);
   padding: 14px 22px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--accent-gold);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 12px var(--accent-blue-glow);
 }
 
 /* Form Inputs */
@@ -118,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-label {
   display: block;
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-muted);
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -127,19 +129,19 @@ h1, h2, h3, h4, h5, h6 {
 .form-input {
   width: 100%;
   background: rgba(6, 7, 12, 0.95);
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-md);
   padding: 15px 18px;
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.2s ease;
 }
 .form-input:focus {
   outline: none;
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 0 3.5px var(--accent-gold-glow);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3.5px var(--accent-blue-glow);
   background: rgba(9, 10, 16, 1);
 }
 
@@ -147,20 +149,20 @@ h1, h2, h3, h4, h5, h6 {
 .badge-status {
   padding: 3px 8px;
   border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 800;
+  font-size: 0.72rem;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 .status-available {
-  background: rgba(16, 185, 129, 0.18);
-  color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(0, 255, 157, 0.2);
+  color: var(--accent-green);
+  border: 1.5px solid var(--accent-green);
 }
 .status-booked {
-  background: rgba(239, 68, 68, 0.18);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(255, 0, 59, 0.2);
+  color: #ff6685;
+  border: 1.5px solid var(--accent-red);
 }
 .status-blocked {
   background: rgba(100, 116, 139, 0.2);
