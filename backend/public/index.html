@@ -7,16 +7,16 @@
   <meta name="description" content="Sleek, high-contrast executive barber appointment booking platform. Instant slot lock for 1 barber only.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
     /* =========================================================
        LUXURY EXECUTIVE COLOR & VISUAL DESIGN SYSTEM
        ========================================================= */
     :root {
-      --bg-dark: #07080c;
-      --bg-card: rgba(14, 16, 26, 0.88);
-      --bg-card-hover: rgba(22, 26, 40, 0.95);
+      --bg-dark: #050608;
+      --bg-card: rgba(12, 14, 22, 0.9);
+      --bg-card-hover: rgba(20, 24, 36, 0.96);
       --accent-gold: #d4af37;
       --accent-gold-light: #f4e095;
       --accent-gold-dark: #a38118;
@@ -30,7 +30,6 @@
       --text-muted: #cbd5e1;
       --text-dim: #64748b;
       --font-heading: 'Outfit', sans-serif;
-      --font-display: 'Cinzel', serif;
       --font-body: 'Inter', sans-serif;
       --radius-lg: 20px;
       --radius-md: 12px;
@@ -53,7 +52,7 @@
       position: relative;
     }
 
-    /* Ambient Animated Golden Constellation Background */
+    /* Cinematic Macro Loop Canvas */
     #ambient-canvas {
       position: fixed;
       top: 0;
@@ -62,7 +61,6 @@
       height: 100vh;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.65;
     }
 
     /* Scrollbar */
@@ -79,11 +77,11 @@
 
     /* Sticky Executive Header */
     .navbar-header {
-      background: rgba(7, 8, 12, 0.92);
+      background: rgba(5, 6, 8, 0.92);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-card);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -163,7 +161,7 @@
     }
     .nav-btn.active {
       color: #ffffff;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(15, 17, 26, 0.9) 100%);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(12, 14, 22, 0.9) 100%);
       border: 1.5px solid var(--accent-gold);
       box-shadow: 0 0 20px var(--accent-gold-glow);
     }
@@ -218,7 +216,7 @@
       justify-content: space-between;
       margin-bottom: 34px;
       padding: 18px 24px;
-      background: rgba(14, 16, 26, 0.8);
+      background: rgba(12, 14, 22, 0.8);
       border: 1px solid var(--border-card);
       border-radius: var(--radius-lg);
       backdrop-filter: blur(16px);
@@ -231,7 +229,7 @@
       font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; transition: all 0.3s ease;
     }
     .step-item.active .step-num {
-      background: var(--accent-gold); border-color: #ffffff; color: #07080c;
+      background: var(--accent-gold); border-color: #ffffff; color: #050608;
       box-shadow: 0 0 24px var(--accent-gold-glow); transform: scale(1.1);
     }
     .step-item.completed .step-num {
@@ -300,7 +298,7 @@
       font-size: 1.5rem;
     }
     .service-card.selected .service-icon-box {
-      background: var(--accent-gold); color: #07080c; box-shadow: 0 0 18px var(--accent-gold-glow);
+      background: var(--accent-gold); color: #050608; box-shadow: 0 0 18px var(--accent-gold-glow);
     }
     .service-name { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #ffffff; }
     .service-duration { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
@@ -320,7 +318,7 @@
       background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.18); color: #ffffff;
       width: 38px; height: 38px; border-radius: 8px; font-size: 1.2rem; cursor: pointer; transition: all 0.2s ease;
     }
-    .cal-btn:hover:not(:disabled) { background: var(--accent-gold); border-color: var(--accent-gold); color: #07080c; }
+    .cal-btn:hover:not(:disabled) { background: var(--accent-gold); border-color: var(--accent-gold); color: #050608; }
     .cal-btn:disabled { opacity: 0.3; cursor: not-allowed; }
     .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.8rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 10px; }
     .calendar-days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
@@ -334,7 +332,7 @@
     .cal-day-cell.empty { background: transparent; cursor: default; }
     .cal-day-cell.today { border-color: var(--accent-emerald); }
     .today-indicator { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-emerald); position: absolute; bottom: 4px; box-shadow: 0 0 8px var(--accent-emerald); }
-    .cal-day-cell.selected { background: var(--accent-gold) !important; color: #07080c !important; border-color: #ffffff !important; box-shadow: 0 0 20px var(--accent-gold-glow) !important; }
+    .cal-day-cell.selected { background: var(--accent-gold) !important; color: #050608 !important; border-color: #ffffff !important; box-shadow: 0 0 20px var(--accent-gold-glow) !important; }
 
     .selected-date-badge {
       background: rgba(212, 175, 55, 0.12); border: 1.5px solid var(--border-card); padding: 14px 20px;
@@ -349,8 +347,8 @@
       display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; transition: all 0.25s ease;
     }
     .slot-pill:hover:not(:disabled) { border-color: var(--accent-gold); transform: translateY(-2px); box-shadow: 0 4px 18px rgba(212, 175, 55, 0.2); }
-    .slot-pill.selected { background: var(--accent-gold); border-color: #ffffff; color: #07080c; box-shadow: 0 0 20px var(--accent-gold-glow); }
-    .slot-pill.selected .time-val { color: #07080c; }
+    .slot-pill.selected { background: var(--accent-gold); border-color: #ffffff; color: #050608; box-shadow: 0 0 20px var(--accent-gold-glow); }
+    .slot-pill.selected .time-val { color: #050608; }
     .time-val { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; color: #ffffff; }
     .badge-status { padding: 3px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
     .status-available { background: rgba(16, 185, 129, 0.18); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.35); }
@@ -370,7 +368,7 @@
     /* Executive Buttons */
     .btn-spider {
       background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
-      color: #07080c; font-family: var(--font-heading); font-weight: 900; font-size: 1.05rem;
+      color: #050608; font-family: var(--font-heading); font-weight: 900; font-size: 1.05rem;
       letter-spacing: 0.06em; text-transform: uppercase; border: none; border-radius: var(--radius-md);
       padding: 16px 30px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       box-shadow: 0 6px 25px var(--accent-gold-glow); transition: all 0.25s ease; width: 100%;
@@ -422,7 +420,7 @@
 
     .hidden { display: none !important; }
     .alert-error { background: rgba(239, 68, 68, 0.18); border: 1.5px solid var(--accent-red-subtle); color: #f87171; padding: 14px; border-radius: 10px; font-weight: 700; margin-bottom: 24px; }
-    .spinner { width: 18px; height: 18px; border: 2.5px solid rgba(7, 8, 12, 0.3); border-top-color: #07080c; border-radius: 50%; animation: spin 0.75s linear infinite; display: inline-block; }
+    .spinner { width: 18px; height: 18px; border: 2.5px solid rgba(5, 6, 8, 0.3); border-top-color: #050608; border-radius: 50%; animation: spin 0.75s linear infinite; display: inline-block; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (max-width: 640px) {
@@ -435,7 +433,7 @@
 </head>
 <body>
 
-  <!-- Ambient Animated Golden Constellation Background -->
+  <!-- Cinematic Macro Loop Animation Canvas -->
   <canvas id="ambient-canvas"></canvas>
 
   <div class="app-root">
@@ -648,13 +646,17 @@
   </div>
 
   <script>
-    /* Elegant Ambient Animated Background Canvas */
-    (function initAmbientCanvas() {
+    /* =========================================================
+       CINEMATIC MACRO LOOP CANVAS ANIMATION ENGINE
+       - Fluid Shifting Shadows & Deep Obsidian Gradient
+       - Floating Gold & Charcoal Dust Particles with Sine Sway
+       - Sweeping Anamorphic Lens Flare & Metallic Gold Geometry
+       ========================================================= */
+    (function initCinematicMacroLoop() {
       const canvas = document.getElementById('ambient-canvas');
       const ctx = canvas.getContext('2d');
       let width, height;
-      let particles = [];
-      let mouse = { x: null, y: null, maxDist: 180 };
+      let time = 0;
 
       function resize() {
         width = canvas.width = window.innerWidth;
@@ -663,75 +665,123 @@
       window.addEventListener('resize', resize);
       resize();
 
-      window.addEventListener('mousemove', e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-
-      const numParticles = Math.floor(Math.min(window.innerWidth / 18, 50));
+      // Fluid Floating Particles (Gold & Charcoal Dust)
+      const particles = [];
+      const numParticles = Math.floor(Math.min(window.innerWidth / 12, 65));
       for (let i = 0; i < numParticles; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
-          radius: Math.random() * 2 + 1,
-          alpha: Math.random() * 0.5 + 0.3
+          size: Math.random() * 2.2 + 0.8,
+          speedY: Math.random() * 0.4 + 0.15,
+          swayFreq: Math.random() * 0.02 + 0.005,
+          swayAmp: Math.random() * 1.5 + 0.5,
+          opacity: Math.random() * 0.6 + 0.2,
+          isGold: Math.random() > 0.35
         });
       }
 
-      function draw() {
-        ctx.clearRect(0, 0, width, height);
+      function drawCinematicFrame() {
+        time += 0.015;
 
-        particles.forEach((p, idx) => {
-          p.x += p.vx;
-          p.y += p.vy;
+        // 1. Deep Obsidian Black Background with Fluid Shifting Shadows
+        ctx.fillStyle = '#050608';
+        ctx.fillRect(0, 0, width, height);
 
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
+        // Fluid shifting shadow spotlight 1 (Top Left Golden Ambient Light)
+        const shadowX1 = width * 0.3 + Math.sin(time * 0.5) * (width * 0.15);
+        const shadowY1 = height * 0.2 + Math.cos(time * 0.4) * (height * 0.1);
+        const grad1 = ctx.createRadialGradient(shadowX1, shadowY1, 10, shadowX1, shadowY1, width * 0.55);
+        grad1.addColorStop(0, 'rgba(212, 175, 55, 0.09)');
+        grad1.addColorStop(0.5, 'rgba(163, 129, 24, 0.03)');
+        grad1.addColorStop(1, 'rgba(5, 6, 8, 0)');
+        ctx.fillStyle = grad1;
+        ctx.fillRect(0, 0, width, height);
+
+        // Fluid shifting shadow spotlight 2 (Bottom Right Mood Light)
+        const shadowX2 = width * 0.8 - Math.cos(time * 0.6) * (width * 0.12);
+        const shadowY2 = height * 0.8 - Math.sin(time * 0.5) * (height * 0.12);
+        const grad2 = ctx.createRadialGradient(shadowX2, shadowY2, 20, shadowX2, shadowY2, width * 0.6);
+        grad2.addColorStop(0, 'rgba(30, 41, 59, 0.25)');
+        grad2.addColorStop(0.6, 'rgba(15, 23, 42, 0.08)');
+        grad2.addColorStop(1, 'rgba(5, 6, 8, 0)');
+        ctx.fillStyle = grad2;
+        ctx.fillRect(0, 0, width, height);
+
+        // 2. Geometric Metallic Gold Edges (Minimalist Dark Luxury Geometry)
+        ctx.save();
+        ctx.translate(width * 0.85, height * 0.25);
+        ctx.rotate(time * 0.1);
+        const polySize = Math.min(width, height) * 0.28;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = (i * Math.PI) / 3;
+          const px = polySize * Math.cos(angle);
+          const py = polySize * Math.sin(angle);
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        const goldGeoGrad = ctx.createLinearGradient(-polySize, -polySize, polySize, polySize);
+        goldGeoGrad.addColorStop(0, 'rgba(212, 175, 55, 0.12)');
+        goldGeoGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.25)');
+        goldGeoGrad.addColorStop(1, 'rgba(163, 129, 24, 0.05)');
+        ctx.strokeStyle = goldGeoGrad;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.restore();
+
+        // 3. Faint Floating Gold & Charcoal Dust Particles
+        particles.forEach(p => {
+          p.y -= p.speedY;
+          p.x += Math.sin(time + p.swayFreq * 100) * (p.swayAmp * 0.3);
+
+          if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+          if (p.x < -10) p.x = width + 10;
+          if (p.x > width + 10) p.x = -10;
 
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = idx % 2 === 0 ? 'rgba(212, 175, 55, ' + p.alpha + ')' : 'rgba(16, 185, 129, ' + p.alpha * 0.8 + ')';
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = idx % 2 === 0 ? '#d4af37' : '#10b981';
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.isGold ? `rgba(212, 175, 55, ${p.opacity})` : `rgba(148, 163, 184, ${p.opacity * 0.7})`;
+          ctx.shadowBlur = p.isGold ? 10 : 4;
+          ctx.shadowColor = p.isGold ? '#d4af37' : '#94a3b8';
           ctx.fill();
-
-          for (let j = idx + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dx = p2.x - p.x;
-            const dy = p2.y - p.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 150) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = 'rgba(212, 175, 55, ' + (1 - dist / 150) * 0.18 + ')';
-              ctx.lineWidth = 1;
-              ctx.stroke();
-            }
-          }
-
-          if (mouse.x !== null) {
-            const mdx = mouse.x - p.x;
-            const mdy = mouse.y - p.y;
-            const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-
-            if (mdist < mouse.maxDist) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = 'rgba(212, 175, 55, ' + (1 - mdist / mouse.maxDist) * 0.45 + ')';
-              ctx.lineWidth = 1.2;
-              ctx.stroke();
-            }
-          }
         });
 
-        requestAnimationFrame(draw);
+        // 4. Sweeping Anamorphic Lens Flare Hit
+        const flareCycle = (time * 0.4) % (Math.PI * 2);
+        const flareIntensity = Math.pow(Math.max(0, Math.sin(flareCycle)), 6);
+
+        if (flareIntensity > 0.02) {
+          const flareX = width * 0.2 + (width * 0.6) * ((Math.sin(time * 0.4) + 1) / 2);
+          const flareY = height * 0.35 + Math.cos(time * 0.3) * (height * 0.15);
+
+          // Horizontal anamorphic lens flare beam
+          const beamGrad = ctx.createLinearGradient(0, flareY, width, flareY);
+          beamGrad.addColorStop(0, 'rgba(212, 175, 55, 0)');
+          beamGrad.addColorStop(Math.max(0, flareX / width - 0.25), 'rgba(212, 175, 55, 0)');
+          beamGrad.addColorStop(flareX / width, `rgba(255, 244, 194, ${flareIntensity * 0.75})`);
+          beamGrad.addColorStop(Math.min(1, flareX / width + 0.25), 'rgba(212, 175, 55, 0)');
+          beamGrad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+
+          ctx.fillStyle = beamGrad;
+          ctx.fillRect(0, flareY - 2, width, 4);
+
+          // Bright Lens Flare Hotspot
+          const coreGrad = ctx.createRadialGradient(flareX, flareY, 0, flareX, flareY, 35);
+          coreGrad.addColorStop(0, `rgba(255, 255, 255, ${flareIntensity})`);
+          coreGrad.addColorStop(0.3, `rgba(212, 175, 55, ${flareIntensity * 0.8})`);
+          coreGrad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+          ctx.fillStyle = coreGrad;
+          ctx.beginPath();
+          ctx.arc(flareX, flareY, 35, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(drawCinematicFrame);
       }
-      draw();
+
+      drawCinematicFrame();
     })();
 
     /* SPA Logic & State Management */
