@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>BARBERSLOT | Premium Grooming Studio</title>
+  <title>BARBERSLOT | Premium Barber Booking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Ultra-premium luxury barber experience. Precision haircutting, beard shaping, and executive grooming studio.">
+  <meta name="description" content="Ultra-premium luxury barber appointment booking platform. Precision haircutting, beard trims, and styling.">
   
   <!-- Premium Editorial Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,7 +87,7 @@
       #custom-cursor { display: none !important; }
     }
 
-    /* Living Background Canvas */
+    /* Living Animated Background Canvas */
     #living-bg-canvas {
       position: fixed;
       top: 0;
@@ -110,9 +110,7 @@
       z-index: 2;
     }
 
-    /* =========================================================
-       FLOATING NAVIGATION BAR
-       ========================================================= */
+    /* FLOATING NAVIGATION BAR */
     .navbar-floating {
       position: fixed;
       top: 0;
@@ -189,6 +187,7 @@
       transition: var(--transition-fast);
       position: relative;
       padding: 4px 0;
+      cursor: pointer;
     }
     .nav-item-link::after {
       content: '';
@@ -287,12 +286,11 @@
       text-decoration: none;
       letter-spacing: 0.05em;
       transition: color 0.2s ease;
+      cursor: pointer;
     }
     .mobile-nav-links a:hover { color: var(--accent-gold); }
 
-    /* =========================================================
-       HERO SECTION
-       ========================================================= */
+    /* HERO SECTION */
     .hero-section {
       min-height: 100vh;
       display: flex;
@@ -437,9 +435,7 @@
       50% { transform: scaleY(1); opacity: 1; }
     }
 
-    /* =========================================================
-       EDITORIAL SERVICES SECTION
-       ========================================================= */
+    /* SERVICES SECTION */
     .section-editorial {
       padding: 120px 32px;
       max-width: 1240px;
@@ -542,9 +538,7 @@
       .service-meta { width: 100%; justify-content: space-between; }
     }
 
-    /* =========================================================
-       ASYMMETRIC ABOUT & STATS SECTION
-       ========================================================= */
+    /* ABOUT SECTION */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -600,9 +594,7 @@
       .about-img { height: 380px; }
     }
 
-    /* =========================================================
-       EDITORIAL MASONRY GALLERY & LIGHTBOX
-       ========================================================= */
+    /* GALLERY MASONRY */
     .gallery-masonry {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -667,9 +659,7 @@
       color: var(--text-main); font-size: 2.2rem; cursor: pointer;
     }
 
-    /* =========================================================
-       BOOKING SECTION & EMBEDDED SPA BOOKING FLOW
-       ========================================================= */
+    /* BOOKING SECTION */
     .booking-section-wrapper {
       position: relative;
       padding: 120px 32px;
@@ -788,7 +778,7 @@
     .summary-val { font-family: var(--font-heading); font-weight: 800; color: var(--text-main); }
     .highlight-gold { color: var(--accent-gold); }
 
-    /* Confirmation Modal Screen */
+    /* Confirmation Screen */
     .confirmation-box { text-align: center; padding: 36px 20px; }
     .id-code-badge { display: inline-flex; flex-direction: column; background: rgba(198, 161, 91, 0.12); border: 1.5px solid var(--accent-gold); padding: 14px 32px; border-radius: 14px; margin-bottom: 24px; }
     .id-label { font-size: 0.72rem; font-weight: 800; color: var(--accent-gold); letter-spacing: 0.18em; text-transform: uppercase; }
@@ -798,9 +788,7 @@
     .step-actions.dual .btn-primary-hero { flex: 2; width: 100%; justify-content: center; }
     .step-actions.dual .btn-secondary-hero { flex: 1; text-align: center; }
 
-    /* =========================================================
-       TESTIMONIALS CAROUSEL
-       ========================================================= */
+    /* TESTIMONIALS CAROUSEL */
     .testimonial-card {
       background: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
@@ -834,9 +822,7 @@
     }
     .author-role { font-size: 0.85rem; color: var(--text-muted); }
 
-    /* =========================================================
-       LOCATION & FOOTER
-       ========================================================= */
+    /* OVERSIZED LUXURY FOOTER */
     .footer-oversized {
       background: #020202;
       border-top: 1px solid var(--border-subtle);
@@ -862,7 +848,7 @@
       text-transform: uppercase; margin-bottom: 20px;
     }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s ease; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s ease; cursor: pointer; }
     .footer-links a:hover { color: var(--text-main); }
     .footer-bottom {
       max-width: 1240px; margin: 0 auto;
@@ -954,7 +940,7 @@
               <span>SHARPER.</span>
             </h1>
             <p class="hero-description">
-              Experience executive haircutting, precision beard sculpting, and single-barber craftsmanship in an ultra-luxurious black studio.
+              Experience executive haircutting, precision beard trimming, and single-barber craftsmanship in an ultra-luxurious black studio.
             </p>
             <div class="hero-actions">
               <button class="btn-primary-hero" onclick="scrollToSection('booking')">BOOK YOUR CUT →</button>
@@ -964,11 +950,11 @@
           <div class="scroll-indicator">SCROLL</div>
         </section>
 
-        <!-- SERVICES SECTION -->
+        <!-- ORIGINAL SERVICES SECTION DETAILS -->
         <section class="section-editorial" id="services">
           <div class="section-header">
             <span class="section-eyebrow">EXECUTIVE MENU</span>
-            <h2 class="section-title">PRECISION SERVICES</h2>
+            <h2 class="section-title">OUR SERVICES</h2>
           </div>
 
           <div class="services-editorial-list">
@@ -979,19 +965,19 @@
               </div>
               <div class="service-meta">
                 <span class="service-duration">30 MINS</span>
-                <span class="service-price">$45</span>
+                <span class="service-price">30 MINS</span>
                 <div class="service-arrow">→</div>
               </div>
             </div>
 
             <div class="service-editorial-item" onclick="selectServiceAndBook('Beard Trim')">
               <div class="service-info">
-                <div class="service-item-title">BEARD SHAPING</div>
-                <div class="service-item-desc">Professional beard trim, edge line-up, and razor detailing.</div>
+                <div class="service-item-title">BEARD TRIM</div>
+                <div class="service-item-desc">Professional beard shaping, edge line-up, and razor detailing.</div>
               </div>
               <div class="service-meta">
                 <span class="service-duration">20 MINS</span>
-                <span class="service-price">$30</span>
+                <span class="service-price">20 MINS</span>
                 <div class="service-arrow">→</div>
               </div>
             </div>
@@ -1003,19 +989,19 @@
               </div>
               <div class="service-meta">
                 <span class="service-duration">50 MINS</span>
-                <span class="service-price">$65</span>
+                <span class="service-price">50 MINS</span>
                 <div class="service-arrow">→</div>
               </div>
             </div>
 
             <div class="service-editorial-item" onclick="selectServiceAndBook('Hair Styling')">
               <div class="service-info">
-                <div class="service-item-title">PREMIUM PACKAGE</div>
-                <div class="service-item-desc">Full grooming transformation, scalp therapy, and precision styling.</div>
+                <div class="service-item-title">HAIR STYLING</div>
+                <div class="service-item-desc">Full hair styling transformation, scalp therapy, and precision finish.</div>
               </div>
               <div class="service-meta">
-                <span class="service-duration">60 MINS</span>
-                <span class="service-price">$90</span>
+                <span class="service-duration">25 MINS</span>
+                <span class="service-price">25 MINS</span>
                 <div class="service-arrow">→</div>
               </div>
             </div>
@@ -1061,15 +1047,15 @@
           <div class="gallery-masonry">
             <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600')">
               <img class="gallery-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800" alt="Precision Haircut">
-              <div class="gallery-overlay"><span class="gallery-caption">Precision Fade</span></div>
+              <div class="gallery-overlay"><span class="gallery-caption">Precision Haircut</span></div>
             </div>
             <div class="gallery-item tall" onclick="openLightbox('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=1600')">
-              <img class="gallery-img" src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800" alt="Beard Sculpting">
-              <div class="gallery-overlay"><span class="gallery-caption">Beard Sculpting</span></div>
+              <img class="gallery-img" src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=800" alt="Beard Trim">
+              <div class="gallery-overlay"><span class="gallery-caption">Beard Trim</span></div>
             </div>
             <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1600')">
-              <img class="gallery-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800" alt="Executive Grooming">
-              <div class="gallery-overlay"><span class="gallery-caption">Executive Styling</span></div>
+              <img class="gallery-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800" alt="Hair Styling">
+              <div class="gallery-overlay"><span class="gallery-caption">Hair Styling</span></div>
             </div>
           </div>
         </section>
@@ -1082,7 +1068,7 @@
           </div>
           <div class="testimonial-card">
             <div class="testimonial-quote">
-              "The single-barber atmosphere is unmatched. Total privacy, extreme precision, and the cleanest fade I've ever gotten. Worth every penny."
+              "The single-barber atmosphere is unmatched. Total privacy, extreme precision, and the cleanest cut I've ever gotten. Worth every penny."
             </div>
             <div class="testimonial-author">
               <img class="author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Alexander R.">
@@ -1116,25 +1102,25 @@
             <!-- Booking Card -->
             <div id="booking-card" class="booking-glass-card">
               
-              <!-- STEP 1: SERVICE -->
+              <!-- STEP 1: SERVICE (ORIGINAL VERSION DETAILS) -->
               <div id="step-1">
                 <h3 class="section-eyebrow" style="margin-bottom:20px;">STEP 1 — CHOOSE YOUR SERVICE</h3>
                 <div class="services-select-grid">
                   <div class="service-select-card selected" onclick="selectService('Haircut', this)">
                     <span style="font-size:1.6rem;">✂️</span>
-                    <div><div style="font-weight:800; font-size:1.05rem;">Haircut</div><div style="font-size:0.85rem; color:var(--text-muted);">30 Mins • $45</div></div>
+                    <div><div style="font-weight:800; font-size:1.05rem;">Haircut</div><div style="font-size:0.85rem; color:var(--text-muted);">30 Mins</div></div>
                   </div>
                   <div class="service-select-card" onclick="selectService('Beard Trim', this)">
                     <span style="font-size:1.6rem;">🧔</span>
-                    <div><div style="font-weight:800; font-size:1.05rem;">Beard Shaping</div><div style="font-size:0.85rem; color:var(--text-muted);">20 Mins • $30</div></div>
+                    <div><div style="font-weight:800; font-size:1.05rem;">Beard Trim</div><div style="font-size:0.85rem; color:var(--text-muted);">20 Mins</div></div>
                   </div>
                   <div class="service-select-card" onclick="selectService('Haircut + Beard', this)">
                     <span style="font-size:1.6rem;">💈</span>
-                    <div><div style="font-weight:800; font-size:1.05rem;">Haircut + Beard</div><div style="font-size:0.85rem; color:var(--text-muted);">50 Mins • $65</div></div>
+                    <div><div style="font-weight:800; font-size:1.05rem;">Haircut + Beard</div><div style="font-size:0.85rem; color:var(--text-muted);">50 Mins</div></div>
                   </div>
                   <div class="service-select-card" onclick="selectService('Hair Styling', this)">
                     <span style="font-size:1.6rem;">✨</span>
-                    <div><div style="font-weight:800; font-size:1.05rem;">Premium Package</div><div style="font-size:0.85rem; color:var(--text-muted);">60 Mins • $90</div></div>
+                    <div><div style="font-weight:800; font-size:1.05rem;">Hair Styling</div><div style="font-size:0.85rem; color:var(--text-muted);">25 Mins</div></div>
                   </div>
                 </div>
                 <button class="btn-primary-hero" style="width:100%; justify-content:center;" onclick="goToStep(2)">NEXT: SELECT DATE & TIME →</button>
