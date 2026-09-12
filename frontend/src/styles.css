@@ -1,24 +1,26 @@
-/* Dark Modern Street-Culture Tech Design System */
+/* $10,000+ Ultra-Luxury Grooming Studio Design Tokens */
 :root {
-  --bg-dark: #0a0b10;
-  --bg-card: rgba(14, 16, 24, 0.92);
-  --bg-card-hover: rgba(20, 24, 36, 0.96);
-  --accent-blue: #00f0ff;
-  --accent-blue-glow: rgba(0, 240, 255, 0.45);
-  --accent-red: #ff003b;
-  --accent-red-glow: rgba(255, 0, 59, 0.45);
-  --accent-green: #00ff9d;
-  --accent-green-glow: rgba(0, 255, 157, 0.45);
-  --border-card: rgba(0, 240, 255, 0.28);
-  --border-active: #00f0ff;
-  --text-bright: #ffffff;
-  --text-muted: #cbd5e1;
-  --text-dim: #64748b;
+  --bg-primary: #050505;
+  --bg-secondary: #0d0d0d;
+  --bg-surface: #141414;
+  --bg-glass: rgba(20, 20, 20, 0.75);
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --border-accent: rgba(198, 161, 91, 0.35);
+  --text-main: #f5f2ea;
+  --text-muted: #9b9b95;
+  --text-dim: #64645f;
+  --accent-gold: #c6a15b;
+  --accent-gold-light: #e6c665;
+  --accent-gold-dark: #8c6f37;
+  --accent-gold-glow: rgba(198, 161, 91, 0.28);
+  --accent-emerald: #10b981;
+  
+  --font-display: 'Cinzel', serif;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --radius-lg: 20px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
+
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *, *::before, *::after {
@@ -29,142 +31,99 @@
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-dark);
-  color: var(--text-bright);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
   min-height: 100vh;
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
-::-webkit-scrollbar-thumb:hover { background: #33f3ff; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-gold-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   letter-spacing: -0.02em;
 }
 
-/* Glass Panel */
+/* Luxury Card Panel */
 .glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1.5px solid var(--border-card);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-  transition: all 0.28s ease;
+  background: var(--bg-surface);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-accent);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  transition: var(--transition-smooth);
 }
 .glass-panel:hover {
-  border-color: var(--accent-blue);
-  box-shadow: 0 20px 55px rgba(0, 240, 255, 0.25);
+  border-color: var(--accent-gold);
+  box-shadow: 0 30px 70px rgba(198, 161, 91, 0.2);
 }
 
-/* Street Tech Button */
-.btn-spider {
-  background: linear-gradient(135deg, var(--accent-blue) 0%, #00a8b8 100%);
-  color: #0a0b10;
+/* Primary Hero & Action Buttons */
+.btn-primary-hero {
+  background: var(--accent-gold);
+  color: var(--bg-primary);
   font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 1.05rem;
-  letter-spacing: 0.08em;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 16px 30px;
+  padding: 18px 38px;
+  border: 1px solid var(--accent-gold);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: 0 6px 25px var(--accent-blue-glow);
-  transition: all 0.25s ease;
-  width: 100%;
+  gap: 12px;
+  transition: var(--transition-smooth);
+  box-shadow: 0 10px 30px var(--accent-gold-glow);
+  text-decoration: none;
 }
-.btn-spider:hover:not(:disabled) {
+.btn-primary-hero:hover {
+  background: var(--accent-gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 10px 35px rgba(0, 240, 255, 0.6);
-  filter: brightness(1.15);
-}
-.btn-spider:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  filter: grayscale(0.5);
+  box-shadow: 0 15px 40px rgba(198, 161, 91, 0.45);
 }
 
-/* Secondary Button */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+.btn-secondary-hero {
+  background: transparent;
+  color: var(--text-main);
   font-family: var(--font-heading);
-  font-weight: 800;
-  border-radius: var(--radius-md);
-  padding: 14px 22px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 12px var(--accent-blue-glow);
-}
-
-/* Form Inputs */
-.form-group {
-  margin-bottom: 22px;
-}
-.form-label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: var(--text-muted);
-  margin-bottom: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  padding: 18px 34px;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
 }
-.form-input {
-  width: 100%;
-  background: rgba(6, 7, 12, 0.95);
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-md);
-  padding: 15px 18px;
-  color: #ffffff;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-.form-input:focus {
-  outline: none;
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3.5px var(--accent-blue-glow);
-  background: rgba(9, 10, 16, 1);
+.btn-secondary-hero:hover {
+  border-color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Status Badges */
 .badge-status {
   padding: 3px 8px;
   border-radius: 12px;
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.68rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 .status-available {
-  background: rgba(0, 255, 157, 0.2);
-  color: var(--accent-green);
-  border: 1.5px solid var(--accent-green);
+  background: rgba(16, 185, 129, 0.18);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 .status-booked {
-  background: rgba(255, 0, 59, 0.2);
-  color: #ff6685;
-  border: 1.5px solid var(--accent-red);
-}
-.status-blocked {
-  background: rgba(100, 116, 139, 0.2);
-  color: var(--text-muted);
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
