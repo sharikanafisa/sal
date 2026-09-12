@@ -2,11 +2,17 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const dbPath = path.join(__dirname, 'barber_booking.db');
+const dbPath = process.env.VERCEL 
+  ? path.join('/tmp', 'barber_booking.db') 
+  : path.join(__dirname, 'barber_booking.db');
+
 const db = new Database(dbPath);
 
 // Enable Foreign Keys & Write-Ahead Logging for concurrency
-db.pragma('journal_mode = WAL');
+try {
+  db.pragma('journal_mode = WAL');
+} catch (e) {}
+
 db.pragma('foreign_keys = ON');
 
 function initDb() {

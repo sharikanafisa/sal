@@ -53,16 +53,20 @@ app.use((req, res, next) => {
 // Activate 24-Hour WhatsApp Reminder Background Scheduler
 whatsappService.initReminderScheduler();
 
-// Start Primary Server (5000)
-app.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(`🕷️ Barber Booking Application live at http://localhost:${PORT}`);
-  console.log(`======================================================\n`);
-});
+// Export express app for Vercel Serverless Functions
+module.exports = app;
 
-// Start Secondary Listener on Port 4200 for direct browser access
-const app4200 = express();
-app4200.use(app);
-app4200.listen(ALT_PORT, () => {
-  console.log(`🕷️ Frontend Access live at http://localhost:${ALT_PORT}`);
-});
+// Only start local standalone listeners if not running on Vercel
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`🕷️ Barber Booking Application live at http://localhost:${PORT}`);
+    console.log(`======================================================\n`);
+  });
+
+  const app4200 = express();
+  app4200.use(app);
+  app4200.listen(ALT_PORT, () => {
+    console.log(`🕷️ Frontend Access live at http://localhost:${ALT_PORT}`);
+  });
+}
