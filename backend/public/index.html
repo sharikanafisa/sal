@@ -25,12 +25,12 @@
       --text-primary: #F1F2F7;
       --text-secondary: #B8BDCC;
       
-      /* Accent Gradient: Reddish Pink -> Purple -> Blue */
-      --accent-pink: #E51C44;
+      /* Accent Gradient: Red -> Purple -> Blue */
+      --accent-pink: #E51D2A;
       --accent-purple: #9B3FBA;
       --accent-blue: #596CFF;
-      --accent-gradient: linear-gradient(135deg, #E51C44 0%, #9B3FBA 50%, #596CFF 100%);
-      --accent-gradient-hover: linear-gradient(135deg, #FF2B55 0%, #AB4FCA 50%, #697CFF 100%);
+      --accent-gradient: linear-gradient(135deg, #E51D2A 0%, #9B3FBA 50%, #596CFF 100%);
+      --accent-gradient-hover: linear-gradient(135deg, #FF2B38 0%, #AB4FCA 50%, #697CFF 100%);
       
       --status-emerald: #10B981;
       --status-red: #EF4444;
@@ -105,8 +105,8 @@
     }
     .brand-icon-box {
       width: 36px; height: 36px; border-radius: 8px;
-      border: 1px solid rgba(229, 28, 68, 0.4);
-      background: rgba(229, 28, 68, 0.1);
+      border: 1px solid rgba(229, 29, 42, 0.4);
+      background: rgba(229, 29, 42, 0.1);
       display: flex; align-items: center; justify-content: center;
       color: var(--accent-pink);
     }
@@ -212,7 +212,7 @@
     }
     .step-item.active .step-num {
       background: var(--bg-panel-elevated); border-color: var(--accent-pink); color: var(--text-primary);
-      box-shadow: 0 0 12px rgba(229, 28, 68, 0.3);
+      box-shadow: 0 0 12px rgba(229, 29, 42, 0.3);
     }
     .step-item.completed .step-num {
       background: rgba(16, 185, 129, 0.12); border-color: var(--status-emerald); color: var(--status-emerald);
@@ -226,7 +226,7 @@
     .glass-card {
       background: var(--bg-panel);
       border: 1px solid transparent;
-      background-image: linear-gradient(var(--bg-panel), var(--bg-panel)), linear-gradient(135deg, rgba(229, 28, 68, 0.35), rgba(155, 63, 186, 0.35), rgba(89, 108, 255, 0.35));
+      background-image: linear-gradient(var(--bg-panel), var(--bg-panel)), linear-gradient(135deg, rgba(229, 29, 42, 0.35), rgba(155, 63, 186, 0.35), rgba(89, 108, 255, 0.35));
       background-origin: border-box;
       background-clip: padding-box, border-box;
       border-radius: 12px;
@@ -281,10 +281,10 @@
     .service-card.selected {
       background: var(--bg-panel-elevated);
       border: 1px solid transparent;
-      background-image: linear-gradient(var(--bg-panel-elevated), var(--bg-panel-elevated)), linear-gradient(135deg, #E51C44, #9B3FBA, #596CFF);
+      background-image: linear-gradient(var(--bg-panel-elevated), var(--bg-panel-elevated)), linear-gradient(135deg, #E51D2A, #9B3FBA, #596CFF);
       background-origin: border-box;
       background-clip: padding-box, border-box;
-      box-shadow: 0 0 16px rgba(229, 28, 68, 0.2), 0 0 16px rgba(89, 108, 255, 0.2);
+      box-shadow: 0 0 16px rgba(229, 29, 42, 0.2), 0 0 16px rgba(89, 108, 255, 0.2);
     }
     .service-icon-box {
       width: 36px; height: 36px; border-radius: 6px;
@@ -349,7 +349,7 @@
       background: var(--accent-gradient) !important;
       color: #FFFFFF !important;
       font-weight: 700;
-      box-shadow: 0 0 12px rgba(229, 28, 68, 0.4);
+      box-shadow: 0 0 12px rgba(229, 29, 42, 0.4);
     }
 
     .selected-date-badge {
@@ -371,10 +371,10 @@
     .slot-pill.selected {
       background: var(--bg-panel-elevated);
       border: 1px solid transparent;
-      background-image: linear-gradient(var(--bg-panel-elevated), var(--bg-panel-elevated)), linear-gradient(135deg, #E51C44, #9B3FBA, #596CFF);
+      background-image: linear-gradient(var(--bg-panel-elevated), var(--bg-panel-elevated)), linear-gradient(135deg, #E51D2A, #9B3FBA, #596CFF);
       background-origin: border-box;
       background-clip: padding-box, border-box;
-      box-shadow: 0 0 12px rgba(229, 28, 68, 0.25);
+      box-shadow: 0 0 12px rgba(229, 29, 42, 0.25);
     }
     .slot-pill.selected .time-val { color: var(--accent-pink); font-weight: 700; }
     .time-val { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); }
@@ -405,7 +405,7 @@
     .btn-gold:hover:not(:disabled) {
       background: var(--accent-gradient-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(229, 28, 68, 0.35);
+      box-shadow: 0 4px 20px rgba(229, 29, 42, 0.35);
     }
     .btn-gold:active:not(:disabled) { transform: translateY(1px); }
     .btn-gold:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -436,9 +436,9 @@
     .confirmation-box { text-align: center; padding: 32px 20px; }
     .confirm-icon-box {
       width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(229, 28, 68, 0.1); border: 1px solid var(--accent-pink);
+      background: rgba(229, 29, 42, 0.1); border: 1px solid var(--accent-pink);
       display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;
-      box-shadow: 0 0 20px rgba(229, 28, 68, 0.25);
+      box-shadow: 0 0 20px rgba(229, 29, 42, 0.25);
     }
     .confirm-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
     .confirm-subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; }
@@ -717,7 +717,7 @@
       const numParticles = Math.floor(Math.min(window.innerWidth / 18, 45));
 
       const particleColors = [
-        'rgba(229, 28, 68, ',   // Reddish Pink Crimson
+        'rgba(229, 29, 42, ',   // Bold Crimson Red
         'rgba(155, 63, 186, ',  // Purple
         'rgba(89, 108, 255, '   // Electric Blue
       ];
@@ -830,7 +830,7 @@
         const lightX1 = width * 0.3 + Math.sin(time * 0.35) * (width * 0.2);
         const lightY1 = height * 0.3 + Math.cos(time * 0.25) * (height * 0.15);
         const grad1 = ctx.createRadialGradient(lightX1, lightY1, 10, lightX1, lightY1, width * 0.45);
-        grad1.addColorStop(0, 'rgba(229, 28, 68, 0.06)');
+        grad1.addColorStop(0, 'rgba(229, 29, 42, 0.06)');
         grad1.addColorStop(0.5, 'rgba(155, 63, 186, 0.025)');
         grad1.addColorStop(1, 'rgba(10, 13, 24, 0)');
         ctx.fillStyle = grad1;
