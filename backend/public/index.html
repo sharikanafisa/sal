@@ -11,7 +11,7 @@
   
   <style>
     /* =========================================================
-       LUXURY DESIGN SYSTEM TOKENS
+       LUXURY SALON DESIGN SYSTEM TOKENS
        ========================================================= */
     :root {
       --bg-primary: #08090A;
@@ -38,12 +38,21 @@
     body {
       font-family: var(--font-family);
       background-color: var(--bg-primary);
-      background-image: radial-gradient(circle at 50% 12%, #111315 0%, #08090A 75%);
       color: var(--text-primary);
       min-height: 100vh;
       line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* Living Ambient Salon Canvas */
+    #salon-bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
     }
 
     ::-webkit-scrollbar { width: 6px; }
@@ -52,14 +61,14 @@
 
     .app-root {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     /* Navigation Bar */
     .navbar-header {
-      background: rgba(8, 9, 10, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8, 9, 10, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
@@ -86,6 +95,11 @@
       background: var(--bg-secondary);
       display: flex; align-items: center; justify-content: center;
       color: var(--accent-champagne);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav-brand:hover .brand-icon-box {
+      border-color: var(--accent-champagne);
+      box-shadow: 0 0 12px rgba(184, 154, 98, 0.2);
     }
     .brand-title {
       font-weight: 700;
@@ -108,7 +122,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
     .nav-btn:hover {
       color: var(--text-primary);
@@ -121,11 +135,16 @@
       font-weight: 700;
     }
 
-    /* Main Container */
+    /* Page Entrance Animation */
     .app-main {
       padding: 32px 16px 80px 16px;
       max-width: 640px;
       margin: 0 auto;
+      animation: pageEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes pageEntrance {
+      0% { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     /* Top Hero Header */
@@ -144,7 +163,16 @@
       letter-spacing: 0.05em;
       margin-bottom: 12px;
     }
-    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-champagne); }
+    .pulse-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-champagne);
+      box-shadow: 0 0 8px var(--accent-champagne);
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
 
     .hero-title {
       font-size: 1.8rem;
@@ -172,25 +200,37 @@
       width: 30px; height: 30px; border-radius: 50%;
       background: var(--bg-secondary); border: 1px solid var(--border-color);
       color: var(--text-secondary); display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.8rem; transition: all 0.2s ease;
+      font-weight: 700; font-size: 0.8rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .step-item.active .step-num {
       background: var(--bg-card-elevated); border-color: var(--accent-champagne); color: var(--accent-champagne);
+      box-shadow: 0 0 0 3px rgba(184, 154, 98, 0.15);
     }
     .step-item.completed .step-num {
       background: rgba(16, 185, 129, 0.1); border-color: var(--status-emerald); color: var(--status-emerald);
     }
-    .step-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
+    .step-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); transition: color 0.3s ease; }
     .step-item.active .step-label { color: var(--text-primary); font-weight: 700; }
-    .step-line { flex: 1; height: 1px; background: var(--border-color); margin: 0 6px 14px 6px; }
+    .step-line { flex: 1; height: 1px; background: var(--border-color); margin: 0 6px 14px 6px; transition: background 0.4s ease; }
     .step-line.active { background: var(--accent-champagne); }
 
-    /* Cards */
+    /* Cards & Mirror Sheen Reflection */
     .glass-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .step-panel {
+      animation: stepSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes stepSlideIn {
+      0% { opacity: 0; transform: translateX(10px); }
+      100% { opacity: 1; transform: translateX(0); }
     }
 
     .section-title {
@@ -217,15 +257,32 @@
       align-items: center;
       gap: 12px;
       min-height: 52px;
-      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -150%;
+      width: 100%; height: 100%;
+      background: linear-gradient(105deg, transparent 40%, rgba(184, 154, 98, 0.12) 50%, transparent 60%);
+      pointer-events: none;
     }
     .service-card:hover {
+      transform: translateY(-2px);
       background: var(--bg-card-elevated);
       border-color: var(--border-button);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    .service-card:hover::after {
+      left: 150%;
+      transition: left 0.7s ease-in-out;
     }
     .service-card.selected {
       background: var(--bg-card-elevated);
       border-color: var(--accent-champagne);
+      box-shadow: inset 0 0 12px rgba(184, 154, 98, 0.05), 0 0 16px rgba(184, 154, 98, 0.1);
     }
     .service-icon-box {
       width: 36px; height: 36px; border-radius: 6px;
@@ -234,6 +291,7 @@
       color: var(--text-secondary);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      transition: color 0.25s ease, border-color 0.25s ease;
     }
     .service-card.selected .service-icon-box {
       color: var(--accent-champagne);
@@ -245,6 +303,7 @@
       border: 1px solid var(--border-button);
       margin-left: auto; display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      transition: border-color 0.25s ease;
     }
     .service-card.selected .radio-circle { border-color: var(--accent-champagne); }
     .radio-inner-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-champagne); }
@@ -267,8 +326,9 @@
       border: 1px solid var(--border-color);
       color: var(--text-primary); width: 32px; height: 32px;
       border-radius: 6px; cursor: pointer; font-size: 1rem;
+      transition: all 0.2s ease;
     }
-    .cal-btn:hover { border-color: var(--border-button); }
+    .cal-btn:hover { border-color: var(--border-button); background: var(--bg-card-elevated); }
     .calendar-weekdays {
       display: grid; grid-template-columns: repeat(7, 1fr); text-align: center;
       font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;
@@ -279,7 +339,7 @@
       font-size: 0.85rem; font-weight: 500; color: var(--text-primary);
       background: var(--bg-primary); cursor: pointer; transition: all 0.2s ease;
     }
-    .cal-day-cell:hover:not(.disabled):not(.empty) { border: 1px solid var(--accent-champagne); }
+    .cal-day-cell:hover:not(.disabled):not(.empty) { border: 1px solid var(--accent-champagne); transform: scale(1.05); }
     .cal-day-cell.disabled { opacity: 0.25; cursor: not-allowed; text-decoration: line-through; }
     .cal-day-cell.empty { background: transparent; cursor: default; }
     .cal-day-cell.today { border: 1px solid var(--border-button); }
@@ -300,7 +360,7 @@
       border-radius: 8px; padding: 10px 8px; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
       cursor: pointer; transition: all 0.2s ease;
     }
-    .slot-pill:hover:not(:disabled) { border-color: var(--accent-champagne); }
+    .slot-pill:hover:not(:disabled) { border-color: var(--accent-champagne); transform: translateY(-1px); }
     .slot-pill.selected { background: var(--bg-card-elevated); border-color: var(--accent-champagne); }
     .slot-pill.selected .time-val { color: var(--accent-champagne); font-weight: 700; }
     .time-val { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); }
@@ -317,16 +377,35 @@
       border: 1px solid var(--border-color); border-radius: 8px;
       color: var(--text-primary); font-family: var(--font-family); font-size: 0.95rem; transition: all 0.2s ease;
     }
-    .form-input:focus { outline: none; border-color: var(--accent-champagne); }
+    .form-input:focus { outline: none; border-color: var(--accent-champagne); box-shadow: 0 0 10px rgba(184, 154, 98, 0.15); }
 
-    /* Buttons */
+    /* Buttons with Luxury Highlight Shine */
     .btn-gold {
       width: 100%; height: 50px; background: var(--accent-champagne); color: #08090A; border: none;
       padding: 0 20px; border-radius: 8px; font-family: var(--font-family);
       font-weight: 700; font-size: 0.92rem; letter-spacing: 0.02em;
-      cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .btn-gold:hover:not(:disabled) { background: var(--accent-champagne-hover); }
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -150%;
+      width: 100%; height: 100%;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.3) 50%, transparent 60%);
+      pointer-events: none;
+    }
+    .btn-gold:hover:not(:disabled) {
+      background: var(--accent-champagne-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(184, 154, 98, 0.25);
+    }
+    .btn-gold:hover:not(:disabled)::after {
+      left: 150%;
+      transition: left 0.75s ease-in-out;
+    }
+    .btn-gold:active:not(:disabled) { transform: translateY(1px); }
     .btn-gold:disabled { opacity: 0.35; cursor: not-allowed; }
 
     .btn-secondary {
@@ -335,6 +414,7 @@
       font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all 0.2s ease;
     }
     .btn-secondary:hover { border-color: var(--text-secondary); background: var(--bg-card-elevated); }
+    .btn-secondary:active { transform: translateY(1px); }
 
     .step-actions.dual { display: flex; gap: 10px; margin-top: 20px; }
     .step-actions.dual button { flex: 1; }
@@ -356,6 +436,7 @@
       width: 56px; height: 56px; border-radius: 50%;
       background: var(--bg-secondary); border: 1px solid var(--accent-champagne);
       display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;
+      box-shadow: 0 0 20px rgba(184, 154, 98, 0.15);
     }
     .confirm-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
     .confirm-subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; }
@@ -388,6 +469,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Living Ambient Salon Interior Background Canvas -->
+  <canvas id="salon-bg-canvas"></canvas>
 
   <div class="app-root">
     <!-- Navbar Header -->
@@ -436,7 +520,7 @@
         <div id="booking-card" class="glass-card">
           
           <!-- STEP 1: SERVICE -->
-          <div id="step-1">
+          <div id="step-1" class="step-panel">
             <h2 class="section-title">STEP 1 — SELECT SERVICE</h2>
             <div class="services-grid">
               <div class="service-card selected" onclick="selectService('Haircut', this)">
@@ -475,7 +559,7 @@
           </div>
 
           <!-- STEP 2: DATE & TIME -->
-          <div id="step-2" class="hidden">
+          <div id="step-2" class="step-panel hidden">
             <h2 class="section-title">STEP 2 — CHOOSE DATE & TIME</h2>
             <div class="calendar-wrapper">
               <div class="calendar-header">
@@ -503,7 +587,7 @@
           </div>
 
           <!-- STEP 3: CUSTOMER DETAILS -->
-          <div id="step-3" class="hidden">
+          <div id="step-3" class="step-panel hidden">
             <h2 class="section-title">STEP 3 — CUSTOMER DETAILS</h2>
             <div class="form-group">
               <label class="form-label">Full Name *</label>
@@ -524,7 +608,7 @@
           </div>
 
           <!-- STEP 4: SUMMARY -->
-          <div id="step-4" class="hidden">
+          <div id="step-4" class="step-panel hidden">
             <h2 class="section-title">STEP 4 — APPOINTMENT SUMMARY</h2>
             <div class="summary-box">
               <div class="summary-row"><span class="summary-label">Service</span><span class="summary-val highlight-gold" id="sum-service"></span></div>
@@ -613,6 +697,96 @@
   </div>
 
   <script>
+    /* Living Ambient Salon Interior Background Canvas Engine */
+    (function initSalonBgCanvas() {
+      const canvas = document.getElementById('salon-bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height, time = 0;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Atmospheric particles
+      const particles = [];
+      const numParticles = Math.floor(Math.min(window.innerWidth / 20, 40));
+
+      for (let i = 0; i < numParticles; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 1.5 + 0.4,
+          speedY: Math.random() * 0.2 + 0.05,
+          swayFreq: Math.random() * 0.015 + 0.004,
+          opacity: Math.random() * 0.35 + 0.1
+        });
+      }
+
+      function drawSalonFrame() {
+        time += 0.008; // Ultra-slow 8-15s ambient movement
+        ctx.fillStyle = '#08090A';
+        ctx.fillRect(0, 0, width, height);
+
+        // 1. Dark Salon Wall Architectural Texture
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+        ctx.lineWidth = 1;
+        const colWidth = width / 6;
+        for (let i = 1; i < 6; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i * colWidth, 0);
+          ctx.lineTo(i * colWidth, height);
+          ctx.stroke();
+        }
+
+        // 2. Salon Arched Mirror Silhouettes with subtle ambient champagne rim light
+        const mirrorWidth = Math.min(width * 0.28, 220);
+        const mirrorHeight = height * 0.65;
+        const centerX = width * 0.5;
+
+        ctx.save();
+        ctx.strokeStyle = 'rgba(184, 154, 98, 0.035)';
+        ctx.lineWidth = 1.5;
+
+        // Center mirror arc outline
+        ctx.beginPath();
+        ctx.arc(centerX, height * 0.4, mirrorWidth * 0.5, Math.PI, 0);
+        ctx.lineTo(centerX + mirrorWidth * 0.5, height);
+        ctx.lineTo(centerX - mirrorWidth * 0.5, height);
+        ctx.closePath();
+        ctx.stroke();
+
+        // 3. Moving Warm Salon Lighting Reflections
+        const lightX1 = width * 0.5 + Math.sin(time * 0.4) * (width * 0.18);
+        const lightY1 = height * 0.35 + Math.cos(time * 0.3) * (height * 0.12);
+        const grad1 = ctx.createRadialGradient(lightX1, lightY1, 10, lightX1, lightY1, width * 0.45);
+        grad1.addColorStop(0, 'rgba(184, 154, 98, 0.045)');
+        grad1.addColorStop(0.5, 'rgba(184, 154, 98, 0.012)');
+        grad1.addColorStop(1, 'rgba(8, 9, 10, 0)');
+        ctx.fillStyle = grad1;
+        ctx.fillRect(0, 0, width, height);
+        ctx.restore();
+
+        // 4. Subtle Floating Dust Highlights
+        particles.forEach(p => {
+          p.y -= p.speedY;
+          p.x += Math.sin(time + p.swayFreq * 100) * 0.2;
+
+          if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(184, 154, 98, ${p.opacity * 0.6})`;
+          ctx.fill();
+        });
+
+        requestAnimationFrame(drawSalonFrame);
+      }
+      drawSalonFrame();
+    })();
+
     /* SPA Logic & API Endpoints */
     let selectedService = 'Haircut';
     let selectedDate = '';
@@ -692,7 +866,12 @@
       document.getElementById('step-2').classList.add('hidden');
       document.getElementById('step-3').classList.add('hidden');
       document.getElementById('step-4').classList.add('hidden');
-      document.getElementById('step-' + step).classList.remove('hidden');
+
+      const nextPanel = document.getElementById('step-' + step);
+      nextPanel.classList.remove('hidden');
+      nextPanel.classList.remove('slide-in');
+      void nextPanel.offsetWidth; // Trigger reflow for smooth animation
+      nextPanel.classList.add('slide-in');
 
       for (let i = 1; i <= 4; i++) {
         const st = document.getElementById('st-' + i);
