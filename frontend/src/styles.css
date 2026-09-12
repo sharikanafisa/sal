@@ -1,24 +1,22 @@
-/* Global Ultra High-Contrast Spider-Man Color System */
+/* Executive Grooming Luxury Color Tokens */
 :root {
-  --bg-dark: #020205;
-  --bg-card: rgba(8, 9, 16, 0.95);
-  --bg-card-hover: rgba(16, 18, 30, 0.98);
-  --accent-red: #ff003b;
-  --accent-red-bright: #ff1a4a;
-  --accent-red-glow: rgba(255, 0, 59, 0.65);
-  --accent-blue-neon: #00f0ff;
-  --accent-blue-glow: rgba(0, 240, 255, 0.45);
-  --accent-gold: #ffd700;
-  --accent-green: #00ff9d;
-  --border-card: rgba(255, 0, 59, 0.4);
-  --border-active: #00f0ff;
+  --bg-dark: #07080c;
+  --bg-card: rgba(14, 16, 26, 0.88);
+  --bg-card-hover: rgba(22, 26, 40, 0.95);
+  --accent-gold: #d4af37;
+  --accent-gold-light: #f4e095;
+  --accent-gold-dark: #a38118;
+  --accent-gold-glow: rgba(212, 175, 55, 0.35);
+  --accent-emerald: #10b981;
+  --border-card: rgba(212, 175, 55, 0.25);
+  --border-active: #d4af37;
   --text-bright: #ffffff;
-  --text-muted: #e2e8f0;
-  --text-dim: #94a3b8;
+  --text-muted: #cbd5e1;
+  --text-dim: #64748b;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
   --radius-lg: 20px;
-  --radius-md: 14px;
+  --radius-md: 12px;
   --radius-sm: 8px;
 }
 
@@ -28,34 +26,20 @@
   padding: 0;
 }
 
-body.spider-theme {
+body {
   font-family: var(--font-body);
   background-color: var(--bg-dark);
   color: var(--text-bright);
   min-height: 100vh;
-  overflow-x: hidden;
   line-height: 1.5;
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(255, 0, 59, 0.22) 0%, transparent 65%),
-    radial-gradient(circle at 100% 100%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
-    url("data:image/svg+xml,%3Csvg width='32' height='55.42562584220407' viewBox='0 0 32 55.42562584220407' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 0l16 9.237604307034012v18.475208614068024L16 36.95041722810205 0 27.712812921102036V9.237604307034012zM16 55.42562584220407l16-9.237604307034012V27.712812921102036L16 36.95041722810205 0 27.712812921102036v18.475208614068024z' fill='none' stroke='rgba(255, 0, 59, 0.04)' stroke-width='1.2'/%3E%3C/svg%3E");
+  overflow-x: hidden;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent-red);
-  border-radius: 5px;
-  box-shadow: 0 0 10px var(--accent-red);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ff3366;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--accent-gold-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -63,140 +47,122 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Glassmorphism Panel */
+/* Glass Panel */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 2px solid var(--border-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid var(--border-card);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  transition: all 0.28s ease;
 }
 .glass-panel:hover {
-  border-color: var(--accent-blue-neon);
-  box-shadow: 0 15px 45px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-gold);
+  box-shadow: 0 20px 55px rgba(212, 175, 55, 0.2);
 }
 
-/* Spider Glowing Accent Button */
+/* Executive Action Button */
 .btn-spider {
-  background: linear-gradient(135deg, var(--accent-red) 0%, #b80026 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
+  color: #07080c;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.08rem;
-  letter-spacing: 0.08em;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  border: 2px solid #ffffff;
+  border: none;
   border-radius: var(--radius-md);
-  padding: 16px 32px;
+  padding: 16px 30px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  box-shadow: 0 8px 30px var(--accent-red-glow);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 10px;
+  box-shadow: 0 6px 25px var(--accent-gold-glow);
+  transition: all 0.25s ease;
   width: 100%;
 }
 .btn-spider:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 40px rgba(255, 0, 59, 0.8);
-  filter: brightness(1.15);
-}
-.btn-spider:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(212, 175, 55, 0.55);
+  filter: brightness(1.1);
 }
 .btn-spider:disabled {
   opacity: 0.45;
   cursor: not-allowed;
-  filter: grayscale(0.6);
+  filter: grayscale(0.5);
 }
 
 /* Secondary Button */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   font-family: var(--font-heading);
-  font-weight: 800;
+  font-weight: 700;
   border-radius: var(--radius-md);
-  padding: 16px 24px;
+  padding: 14px 22px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: var(--accent-blue-neon);
-  box-shadow: 0 0 15px var(--accent-blue-glow);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-gold);
 }
 
 /* Form Inputs */
 .form-group {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 .form-label {
   display: block;
-  font-size: 0.88rem;
-  font-weight: 900;
+  font-size: 0.85rem;
+  font-weight: 800;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 .form-input {
   width: 100%;
-  background: rgba(4, 5, 10, 0.98);
-  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: rgba(6, 7, 12, 0.95);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
+  padding: 15px 18px;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 600;
-  transition: all 0.25s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 .form-input:focus {
   outline: none;
-  border-color: var(--accent-red);
-  box-shadow: 0 0 0 4px var(--accent-red-glow);
-  background: rgba(8, 9, 16, 1);
-}
-
-/* Spider Sense Pulse Indicator */
-@keyframes spiderSensePulse {
-  0%, 100% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 10px var(--accent-red); }
-  50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 22px var(--accent-red-bright); }
-}
-.spider-sense-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent-red);
-  box-shadow: 0 0 15px var(--accent-red);
-  animation: spiderSensePulse 1.2s infinite ease-in-out;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3.5px var(--accent-gold-glow);
+  background: rgba(9, 10, 16, 1);
 }
 
 /* Status Badges */
 .badge-status {
-  padding: 4px 10px;
-  border-radius: 14px;
-  font-size: 0.72rem;
-  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 .status-available {
-  background: rgba(0, 255, 157, 0.22);
-  color: var(--accent-green);
-  border: 1.5px solid var(--accent-green);
+  background: rgba(16, 185, 129, 0.18);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.35);
 }
 .status-booked {
-  background: rgba(255, 0, 59, 0.22);
-  color: #ff6685;
-  border: 1.5px solid var(--accent-red);
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
 }
 .status-blocked {
-  background: rgba(148, 163, 184, 0.2);
+  background: rgba(100, 116, 139, 0.2);
   color: var(--text-muted);
 }
