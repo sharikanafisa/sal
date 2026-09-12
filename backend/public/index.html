@@ -2,42 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Executive Barber Appointment Portal</title>
+  <title>Barber Appointment Booking</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Instant barber appointment reservation platform.">
+  <meta name="description" content="Instant appointment booking platform.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     /* =========================================================
-       LUXURY EXECUTIVE DESIGN TOKENS
+       LUXURY DESIGN SYSTEM TOKENS
        ========================================================= */
     :root {
-      --bg-primary: #070709;
-      --bg-secondary: #0e0e12;
-      --bg-surface: #15151c;
-      --bg-surface-hover: #1c1c26;
-      --bg-glass: rgba(21, 21, 28, 0.88);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(196, 177, 151, 0.28);
-      --text-main: #f5f5f7;
-      --text-muted: #9e9ea7;
-      --text-dim: #656570;
-      
-      /* Executive Muted Champagne Gold - Non-yellow */
-      --accent-gold: #c4b197;
-      --accent-gold-light: #dad0bf;
-      --accent-gold-dark: #8c7d66;
-      --accent-gold-glow: rgba(196, 177, 151, 0.15);
-      --accent-emerald: #10b981;
-      --accent-red: #ef4444;
-      
-      --font-heading: 'Plus Jakarta Sans', sans-serif;
-      --font-body: 'Inter', sans-serif;
-
-      --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --bg-primary: #08090A;
+      --bg-secondary: #0E1012;
+      --bg-card: #141618;
+      --bg-card-elevated: #191B1E;
+      --border-color: #272A2D;
+      --border-button: #303236;
+      --text-primary: #F2F0EB;
+      --text-secondary: #9A9DA1;
+      --accent-champagne: #B89A62;
+      --accent-champagne-hover: #C8AD79;
+      --status-emerald: #10B981;
+      --status-red: #EF4444;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     *, *::before, *::after {
@@ -47,47 +36,39 @@
     }
 
     body {
-      font-family: var(--font-body);
+      font-family: var(--font-family);
       background-color: var(--bg-primary);
-      color: var(--text-main);
+      background-image: radial-gradient(circle at 50% 12%, #111315 0%, #08090A 75%);
+      color: var(--text-primary);
       min-height: 100vh;
       line-height: 1.5;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Living Ambient Background Canvas */
-    #living-bg-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
-      pointer-events: none;
+      -webkit-font-smoothing: antialiased;
     }
 
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
 
     .app-root {
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
 
-    /* Navbar */
+    /* Navigation Bar */
     .navbar-header {
-      background: rgba(7, 7, 9, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(8, 9, 10, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
     }
     .nav-container {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -95,325 +76,318 @@
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       cursor: pointer;
       text-decoration: none;
     }
     .brand-icon-box {
-      width: 38px; height: 38px; border-radius: 8px;
-      border: 1px solid var(--accent-gold);
-      background: rgba(196, 177, 151, 0.06);
+      width: 36px; height: 36px; border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
       display: flex; align-items: center; justify-content: center;
-      color: var(--accent-gold);
+      color: var(--accent-champagne);
     }
     .brand-title {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--text-main);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
     }
-    .brand-title .gold { color: var(--accent-gold); }
-    .brand-tag { font-size: 0.65rem; font-weight: 700; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; }
+    .brand-title .gold { color: var(--accent-champagne); }
 
-    .nav-links { display: flex; gap: 8px; }
+    .nav-links { display: flex; gap: 6px; }
     .nav-btn {
       background: transparent;
       border: 1px solid transparent;
-      color: var(--text-muted);
-      font-family: var(--font-heading);
+      color: var(--text-secondary);
       font-weight: 600;
       font-size: 0.85rem;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 8px 14px;
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: var(--transition-fast);
+      gap: 6px;
+      transition: all 0.2s ease;
     }
     .nav-btn:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
+      background: var(--bg-secondary);
     }
     .nav-btn.active {
-      color: var(--text-main);
-      background: rgba(196, 177, 151, 0.12);
-      border-color: var(--border-accent);
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border-color: var(--border-color);
       font-weight: 700;
     }
 
     /* Main Container */
-    .app-main { padding: 36px 20px 80px 20px; max-width: 720px; margin: 0 auto; }
+    .app-main {
+      padding: 32px 16px 80px 16px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
 
-    /* Top Hero Badge */
-    .hero-header { text-align: center; margin-bottom: 32px; }
+    /* Top Hero Header */
+    .hero-header { text-align: center; margin-bottom: 28px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 16px;
-      background: rgba(196, 177, 151, 0.08);
-      border: 1px solid var(--border-accent);
+      padding: 4px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
       border-radius: 20px;
-      color: var(--accent-gold);
+      color: var(--text-secondary);
       font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
     }
-    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); }
+    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-champagne); }
 
     .hero-title {
-      font-family: var(--font-heading);
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--text-main);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
       letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .hero-title span { color: var(--accent-gold); }
-    .hero-subtitle { color: var(--text-muted); font-size: 0.95rem; font-weight: 400; }
+    .hero-title span { color: var(--accent-champagne); }
+    .hero-subtitle { color: var(--text-secondary); font-size: 0.95rem; font-weight: 400; }
 
     /* Stepper Bar */
     .stepper-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 28px;
-      padding: 14px 20px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
+      margin-bottom: 24px;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
     }
     .step-item { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
     .step-num {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--bg-primary); border: 1px solid var(--border-subtle);
-      color: var(--text-dim); display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; transition: var(--transition-fast);
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      color: var(--text-secondary); display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem; transition: all 0.2s ease;
     }
     .step-item.active .step-num {
-      background: var(--accent-gold); border-color: var(--accent-gold); color: #070709;
-      box-shadow: 0 0 15px var(--accent-gold-glow);
+      background: var(--bg-card-elevated); border-color: var(--accent-champagne); color: var(--accent-champagne);
     }
     .step-item.completed .step-num {
-      background: rgba(16, 185, 129, 0.15); border-color: var(--accent-emerald); color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.1); border-color: var(--status-emerald); color: var(--status-emerald);
     }
-    .step-label { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); letter-spacing: 0.04em; }
-    .step-item.active .step-label { color: var(--text-main); font-weight: 700; }
-    .step-line { flex: 1; height: 1px; background: var(--border-subtle); margin: 0 8px 16px 8px; }
-    .step-line.active { background: var(--accent-gold); }
+    .step-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
+    .step-item.active .step-label { color: var(--text-primary); font-weight: 700; }
+    .step-line { flex: 1; height: 1px; background: var(--border-color); margin: 0 6px 14px 6px; }
+    .step-line.active { background: var(--accent-champagne); }
 
-    /* Main Booking Card */
+    /* Cards */
     .glass-card {
-      background: var(--bg-surface);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
     }
 
     .section-title {
-      font-family: var(--font-heading);
-      font-size: 1.05rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      color: var(--text-main);
-      letter-spacing: 0.05em;
-      margin-bottom: 22px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
       text-transform: uppercase;
-    }
-    .section-title::before {
-      content: ''; width: 3px; height: 16px; background: var(--accent-gold); border-radius: 2px;
     }
 
     /* Service Selection Cards */
-    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
     .service-card {
       background: var(--bg-secondary);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 18px;
+      padding: 16px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 14px;
-      transition: var(--transition-fast);
+      gap: 12px;
+      min-height: 52px;
+      transition: all 0.2s ease;
     }
     .service-card:hover {
-      background: var(--bg-surface-hover);
-      border-color: var(--border-accent);
+      background: var(--bg-card-elevated);
+      border-color: var(--border-button);
     }
     .service-card.selected {
-      background: rgba(196, 177, 151, 0.08);
-      border-color: var(--accent-gold);
-      box-shadow: 0 0 15px var(--accent-gold-glow);
+      background: var(--bg-card-elevated);
+      border-color: var(--accent-champagne);
     }
     .service-icon-box {
-      width: 38px; height: 38px; border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--accent-gold);
+      width: 36px; height: 36px; border-radius: 6px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .service-name { font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+    .service-card.selected .service-icon-box {
+      color: var(--accent-champagne);
+      border-color: var(--accent-champagne);
+    }
+    .service-name { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); }
     .radio-circle {
       width: 18px; height: 18px; border-radius: 50%;
-      border: 1.5px solid var(--text-dim);
+      border: 1px solid var(--border-button);
       margin-left: auto; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    .service-card.selected .radio-circle { border-color: var(--accent-gold); }
-    .radio-inner-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-gold); }
+    .service-card.selected .radio-circle { border-color: var(--accent-champagne); }
+    .radio-inner-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-champagne); }
 
     /* Calendar Grid */
     .calendar-wrapper {
       background: var(--bg-secondary);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 18px;
     }
     .calendar-header {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .cal-month-title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--text-main); }
+    .cal-month-title { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
     .cal-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main); width: 32px; height: 32px;
-      border-radius: 6px; cursor: pointer; font-size: 1.1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary); width: 32px; height: 32px;
+      border-radius: 6px; cursor: pointer; font-size: 1rem;
     }
-    .cal-btn:hover { background: rgba(255, 255, 255, 0.08); }
+    .cal-btn:hover { border-color: var(--border-button); }
     .calendar-weekdays {
       display: grid; grid-template-columns: repeat(7, 1fr); text-align: center;
-      font-size: 0.75rem; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;
+      font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;
     }
-    .calendar-days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+    .calendar-days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
     .cal-day-cell {
       aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; font-weight: 600; color: var(--text-main);
-      background: rgba(255, 255, 255, 0.02); cursor: pointer; position: relative; transition: var(--transition-fast);
+      font-size: 0.85rem; font-weight: 500; color: var(--text-primary);
+      background: var(--bg-primary); cursor: pointer; transition: all 0.2s ease;
     }
-    .cal-day-cell:hover:not(.disabled):not(.empty) { background: rgba(196, 177, 151, 0.15); color: var(--text-main); }
+    .cal-day-cell:hover:not(.disabled):not(.empty) { border: 1px solid var(--accent-champagne); }
     .cal-day-cell.disabled { opacity: 0.25; cursor: not-allowed; text-decoration: line-through; }
     .cal-day-cell.empty { background: transparent; cursor: default; }
-    .cal-day-cell.today { border: 1px solid var(--accent-gold); }
-    .cal-day-cell.selected { background: var(--accent-gold) !important; color: #070709 !important; font-weight: 800; }
+    .cal-day-cell.today { border: 1px solid var(--border-button); }
+    .cal-day-cell.selected { background: var(--accent-champagne) !important; color: #08090A !important; font-weight: 700; }
 
     .selected-date-badge {
-      background: rgba(196, 177, 151, 0.08);
-      border: 1px solid var(--border-accent);
-      padding: 10px 16px; border-radius: 8px; color: var(--text-main);
-      font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 10px 14px; border-radius: 8px; color: var(--text-primary);
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;
       display: flex; align-items: center; gap: 8px;
     }
 
     /* Slots Grid */
-    .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); gap: 10px; margin-bottom: 24px; }
+    .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-bottom: 20px; }
     .slot-pill {
-      background: var(--bg-secondary); border: 1px solid var(--border-subtle);
-      border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 4px;
-      cursor: pointer; transition: var(--transition-fast);
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      border-radius: 8px; padding: 10px 8px; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+      cursor: pointer; transition: all 0.2s ease;
     }
-    .slot-pill:hover:not(:disabled) { border-color: var(--accent-gold); background: var(--bg-surface-hover); }
-    .slot-pill.selected { background: var(--accent-gold); border-color: var(--accent-gold); }
-    .slot-pill.selected .time-val { color: #070709; font-weight: 800; }
-    .time-val { font-weight: 700; font-size: 0.9rem; color: var(--text-main); }
-    .badge-status { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; }
-    .status-available { color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1); }
-    .status-booked, .status-unavailable { color: var(--accent-red); background: rgba(239, 68, 68, 0.1); }
-    .slot-pill:disabled { opacity: 0.35; cursor: not-allowed; }
+    .slot-pill:hover:not(:disabled) { border-color: var(--accent-champagne); }
+    .slot-pill.selected { background: var(--bg-card-elevated); border-color: var(--accent-champagne); }
+    .slot-pill.selected .time-val { color: var(--accent-champagne); font-weight: 700; }
+    .time-val { font-weight: 600; font-size: 0.88rem; color: var(--text-primary); }
+    .badge-status { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; padding: 1px 4px; border-radius: 3px; }
+    .status-available { color: var(--status-emerald); }
+    .status-booked, .status-unavailable { color: var(--status-red); }
+    .slot-pill:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    /* Form Fields */
-    .form-group { margin-bottom: 18px; }
-    .form-label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    /* Forms & Inputs */
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
     .form-input {
-      width: 100%; padding: 12px 16px; background: var(--bg-secondary);
-      border: 1px solid var(--border-subtle); border-radius: 8px;
-      color: var(--text-main); font-family: var(--font-body); font-size: 0.95rem; transition: var(--transition-fast);
+      width: 100%; height: 50px; padding: 0 16px; background: var(--bg-secondary);
+      border: 1px solid var(--border-color); border-radius: 8px;
+      color: var(--text-primary); font-family: var(--font-family); font-size: 0.95rem; transition: all 0.2s ease;
     }
-    .form-input:focus { outline: none; border-color: var(--accent-gold); box-shadow: 0 0 12px var(--accent-gold-glow); }
+    .form-input:focus { outline: none; border-color: var(--accent-champagne); }
 
     /* Buttons */
     .btn-gold {
-      width: 100%; background: var(--accent-gold); color: #070709; border: none;
-      padding: 13px 20px; border-radius: 8px; font-family: var(--font-heading);
-      font-weight: 800; font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase;
-      cursor: pointer; transition: var(--transition-fast); display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; height: 50px; background: var(--accent-champagne); color: #08090A; border: none;
+      padding: 0 20px; border-radius: 8px; font-family: var(--font-family);
+      font-weight: 700; font-size: 0.92rem; letter-spacing: 0.02em;
+      cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .btn-gold:hover:not(:disabled) { background: var(--accent-gold-light); transform: translateY(-1px); }
-    .btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-gold:hover:not(:disabled) { background: var(--accent-champagne-hover); }
+    .btn-gold:disabled { opacity: 0.35; cursor: not-allowed; }
 
     .btn-secondary {
-      width: 100%; background: transparent; color: var(--text-muted); border: 1px solid var(--border-subtle);
-      padding: 13px 20px; border-radius: 8px; font-family: var(--font-heading);
-      font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: var(--transition-fast); text-transform: uppercase;
+      width: 100%; height: 50px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-button);
+      padding: 0 20px; border-radius: 8px; font-family: var(--font-family);
+      font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all 0.2s ease;
     }
-    .btn-secondary:hover { color: var(--text-main); border-color: var(--text-muted); background: rgba(255, 255, 255, 0.03); }
+    .btn-secondary:hover { border-color: var(--text-secondary); background: var(--bg-card-elevated); }
 
-    .step-actions.dual { display: flex; gap: 12px; margin-top: 24px; }
+    .step-actions.dual { display: flex; gap: 10px; margin-top: 20px; }
     .step-actions.dual button { flex: 1; }
 
     /* Summary Box */
     .summary-box {
-      background: var(--bg-secondary); border: 1px solid var(--border-subtle);
-      border-radius: 10px; padding: 20px; margin-bottom: 24px;
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      border-radius: 8px; padding: 16px; margin-bottom: 20px;
     }
-    .summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; }
-    .summary-label { color: var(--text-muted); }
-    .summary-val { font-weight: 700; color: var(--text-main); }
-    .highlight-gold { color: var(--accent-gold); }
-    .summary-divider { height: 1px; background: var(--border-subtle); margin: 10px 0; }
+    .summary-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.9rem; }
+    .summary-label { color: var(--text-secondary); }
+    .summary-val { font-weight: 600; color: var(--text-primary); }
+    .highlight-gold { color: var(--accent-champagne); }
+    .summary-divider { height: 1px; background: var(--border-color); margin: 8px 0; }
 
     /* Confirmation Screen */
-    .confirmation-box { text-align: center; padding: 40px 24px; }
+    .confirmation-box { text-align: center; padding: 32px 20px; }
     .confirm-icon-box {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: rgba(196, 177, 151, 0.1); border: 1px solid var(--accent-gold);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--bg-secondary); border: 1px solid var(--accent-champagne);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;
     }
-    .confirm-title { font-family: var(--font-heading); font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
-    .confirm-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px; }
+    .confirm-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .confirm-subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; }
     
     .id-code-badge {
       display: inline-flex; flex-direction: column; align-items: center;
-      background: rgba(196, 177, 151, 0.08); border: 1px dashed var(--accent-gold);
-      padding: 12px 28px; border-radius: 10px; margin-bottom: 24px;
+      background: var(--bg-secondary); border: 1px dashed var(--border-color);
+      padding: 10px 24px; border-radius: 8px; margin-bottom: 20px;
     }
-    .id-label { font-size: 0.68rem; font-weight: 800; color: var(--accent-gold); letter-spacing: 0.15em; }
-    .id-value { font-family: var(--font-heading); font-weight: 800; font-size: 1.4rem; color: var(--text-main); }
+    .id-label { font-size: 0.7rem; font-weight: 700; color: var(--accent-champagne); letter-spacing: 0.1em; }
+    .id-value { font-weight: 700; font-size: 1.3rem; color: var(--text-primary); }
 
     .whatsapp-badge {
-      background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25);
-      color: #34d399; font-size: 0.85rem; padding: 14px 18px; border-radius: 8px;
-      margin-bottom: 24px; text-align: left; display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2);
+      color: #34d399; font-size: 0.85rem; padding: 12px 16px; border-radius: 8px;
+      margin-bottom: 20px; text-align: left; display: flex; gap: 10px; align-items: flex-start;
     }
 
     .alert-error {
-      background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3);
-      color: var(--accent-red); padding: 12px 16px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; margin-bottom: 18px;
+      background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25);
+      color: var(--status-red); padding: 12px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px;
     }
 
     /* Admin Table */
-    .admin-table { width: 100%; border-collapse: collapse; margin-top: 14px; }
-    .admin-table th { text-align: left; padding: 12px; font-size: 0.75rem; color: var(--text-dim); border-bottom: 1px solid var(--border-subtle); text-transform: uppercase; }
-    .admin-table td { padding: 12px; font-size: 0.88rem; border-bottom: 1px solid var(--border-subtle); color: var(--text-main); }
+    .admin-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .admin-table th { text-align: left; padding: 10px; font-size: 0.75rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); text-transform: uppercase; }
+    .admin-table td { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
 
     .hidden { display: none !important; }
   </style>
 </head>
 <body>
-
-  <!-- Living Ambient Background Canvas -->
-  <canvas id="living-bg-canvas"></canvas>
 
   <div class="app-root">
     <!-- Navbar Header -->
@@ -421,16 +395,15 @@
       <div class="nav-container">
         <div class="nav-brand" onclick="showView('booking')">
           <div class="brand-icon-box">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM16 2v4M8 2v4M3 10h18"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM16 2v4M8 2v4M3 10h18"/></svg>
           </div>
           <div>
-            <div class="brand-title">RESERVATION <span class="gold">PORTAL</span></div>
-            <div class="brand-tag">EXECUTIVE APPOINTMENT SYSTEM</div>
+            <div class="brand-title">BARBER<span class="gold">BOOKING</span></div>
           </div>
         </div>
 
         <nav class="nav-links">
-          <button id="nav-book" class="nav-btn active" onclick="showView('booking')">Book Appointment</button>
+          <button id="nav-book" class="nav-btn active" onclick="showView('booking')">Book Slot</button>
           <button id="nav-my" class="nav-btn" onclick="showView('mybooking')">My Booking</button>
           <button id="nav-admin" class="nav-btn" onclick="showView('admin')">Barber Portal</button>
         </nav>
@@ -443,9 +416,9 @@
       <!-- VIEW 1: BOOKING FLOW -->
       <div id="view-booking">
         <header class="hero-header">
-          <div class="hero-badge"><span class="pulse-dot"></span> INSTANT SLOT RESERVATION</div>
-          <h1 class="hero-title">RESERVE YOUR <span>APPOINTMENT</span></h1>
-          <p class="hero-subtitle">Select your service, date, and preferred time slot for instant confirmation.</p>
+          <div class="hero-badge"><span class="pulse-dot"></span> INSTANT SLOT LOCK</div>
+          <h1 class="hero-title">BOOK YOUR <span>SLOT</span></h1>
+          <p class="hero-subtitle">Select your service, date, and preferred time slot.</p>
         </header>
 
         <!-- Stepper Bar -->
@@ -454,7 +427,7 @@
           <div class="step-line" id="sl-1"></div>
           <div class="step-item" id="st-2" onclick="goToStep(2)"><div class="step-num">2</div><span class="step-label">Date & Time</span></div>
           <div class="step-line" id="sl-2"></div>
-          <div class="step-item" id="st-3" onclick="goToStep(3)"><div class="step-num">3</div><span class="step-label">Verification</span></div>
+          <div class="step-item" id="st-3" onclick="goToStep(3)"><div class="step-num">3</div><span class="step-label">Details</span></div>
           <div class="step-line" id="sl-3"></div>
           <div class="step-item" id="st-4"><div class="step-num">4</div><span class="step-label">Confirm</span></div>
         </div>
@@ -468,7 +441,7 @@
             <div class="services-grid">
               <div class="service-card selected" onclick="selectService('Haircut', this)">
                 <div class="service-icon-box">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
                 </div>
                 <div><div class="service-name">Haircut</div></div>
                 <div class="radio-circle"><div class="radio-inner-dot"></div></div>
@@ -476,7 +449,7 @@
 
               <div class="service-card" onclick="selectService('Beard Trim', this)">
                 <div class="service-icon-box">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12c0 3.5 1.8 6.5 4.5 8.2L12 22l5.5-1.8C20.2 18.5 22 15.5 22 12c0-5.52-4.48-10-10-10z"/><path d="M8 11s1.5 2 4 2 4-2 4-2"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12c0 3.5 1.8 6.5 4.5 8.2L12 22l5.5-1.8C20.2 18.5 22 15.5 22 12c0-5.52-4.48-10-10-10z"/><path d="M8 11s1.5 2 4 2 4-2 4-2"/></svg>
                 </div>
                 <div><div class="service-name">Beard Trim</div></div>
                 <div class="radio-circle"><div class="radio-inner-dot hidden"></div></div>
@@ -484,7 +457,7 @@
 
               <div class="service-card" onclick="selectService('Haircut + Beard', this)">
                 <div class="service-icon-box">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
                 </div>
                 <div><div class="service-name">Haircut + Beard</div></div>
                 <div class="radio-circle"><div class="radio-inner-dot hidden"></div></div>
@@ -492,13 +465,13 @@
 
               <div class="service-card" onclick="selectService('Hair Styling', this)">
                 <div class="service-icon-box">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>
                 </div>
                 <div><div class="service-name">Hair Styling</div></div>
                 <div class="radio-circle"><div class="radio-inner-dot hidden"></div></div>
               </div>
             </div>
-            <button class="btn-gold" onclick="goToStep(2)">Next: Select Date & Time ›</button>
+            <button class="btn-gold" onclick="goToStep(2)">Next: Select Date & Time</button>
           </div>
 
           <!-- STEP 2: DATE & TIME -->
@@ -517,54 +490,54 @@
             </div>
 
             <div class="selected-date-badge" id="selected-date-label">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Selected Date: --
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Selected Date: --
             </div>
 
-            <h3 class="section-title" style="font-size:0.95rem;">AVAILABLE TIME SLOTS</h3>
+            <h3 class="section-title">AVAILABLE TIME SLOTS</h3>
             <div id="slots-container" class="slots-grid"></div>
 
             <div class="step-actions dual">
               <button class="btn-secondary" onclick="goToStep(1)">Back</button>
-              <button class="btn-gold" id="btn-to-step3" disabled onclick="goToStep(3)">Next: Enter Details ›</button>
+              <button class="btn-gold" id="btn-to-step3" disabled onclick="goToStep(3)">Next: Enter Details</button>
             </div>
           </div>
 
           <!-- STEP 3: CUSTOMER DETAILS -->
           <div id="step-3" class="hidden">
-            <h2 class="section-title">STEP 3 — CUSTOMER VERIFICATION</h2>
+            <h2 class="section-title">STEP 3 — CUSTOMER DETAILS</h2>
             <div class="form-group">
               <label class="form-label">Full Name *</label>
-              <input type="text" id="cust-name" class="form-input" placeholder="Enter full name">
+              <input type="text" id="cust-name" class="form-input" placeholder="e.g. John Doe">
             </div>
             <div class="form-group">
-              <label class="form-label">WhatsApp Mobile Number *</label>
+              <label class="form-label">WhatsApp Number *</label>
               <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. 9876543210 (10-digit Indian number)">
             </div>
             <div class="form-group">
               <label class="form-label">Email Address (Optional)</label>
-              <input type="email" id="cust-email" class="form-input" placeholder="e.g. client@example.com">
+              <input type="email" id="cust-email" class="form-input" placeholder="e.g. john@example.com">
             </div>
             <div class="step-actions dual">
               <button class="btn-secondary" onclick="goToStep(2)">Back</button>
-              <button class="btn-gold" onclick="goToStep(4)">Review Summary ›</button>
+              <button class="btn-gold" onclick="goToStep(4)">Review Summary</button>
             </div>
           </div>
 
           <!-- STEP 4: SUMMARY -->
           <div id="step-4" class="hidden">
-            <h2 class="section-title">STEP 4 — RESERVATION SUMMARY</h2>
+            <h2 class="section-title">STEP 4 — APPOINTMENT SUMMARY</h2>
             <div class="summary-box">
               <div class="summary-row"><span class="summary-label">Service</span><span class="summary-val highlight-gold" id="sum-service"></span></div>
               <div class="summary-row"><span class="summary-label">Date</span><span class="summary-val" id="sum-date"></span></div>
               <div class="summary-row"><span class="summary-label">Time Slot</span><span class="summary-val" id="sum-time"></span></div>
               <div class="summary-divider"></div>
               <div class="summary-row"><span class="summary-label">Customer Name</span><span class="summary-val" id="sum-name"></span></div>
-              <div class="summary-row"><span class="summary-label">WhatsApp Mobile</span><span class="summary-val" id="sum-phone"></span></div>
+              <div class="summary-row"><span class="summary-label">WhatsApp Number</span><span class="summary-val" id="sum-phone"></span></div>
             </div>
             <div id="booking-error" class="alert-error hidden"></div>
             <div class="step-actions dual">
               <button class="btn-secondary" onclick="goToStep(3)">Back</button>
-              <button class="btn-gold" id="btn-confirm-slot" onclick="confirmSlot()">CONFIRM RESERVATION</button>
+              <button class="btn-gold" id="btn-confirm-slot" onclick="confirmSlot()">CONFIRM SLOT</button>
             </div>
           </div>
 
@@ -573,15 +546,15 @@
         <!-- CONFIRMATION SCREEN -->
         <div id="confirmation-screen" class="glass-card confirmation-box hidden">
           <div class="confirm-icon-box">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-champagne)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
-          <h2 class="confirm-title">RESERVATION CONFIRMED</h2>
+          <h2 class="confirm-title">SLOT CONFIRMED</h2>
           <p class="confirm-subtitle">Your appointment slot has been locked and confirmed.</p>
           <div class="id-code-badge">
-            <span class="id-label">RESERVATION CODE</span>
+            <span class="id-label">BOOKING ID</span>
             <span class="id-value" id="conf-id">SP-00000</span>
           </div>
-          <div class="summary-box" style="text-align:left; margin-bottom:20px;">
+          <div class="summary-box" style="text-align:left; margin-bottom:18px;">
             <div class="summary-row"><span>Service</span><strong id="conf-service"></strong></div>
             <div class="summary-row"><span>Date</span><strong id="conf-date"></strong></div>
             <div class="summary-row"><span>Time</span><strong id="conf-time"></strong></div>
@@ -589,11 +562,11 @@
             <div class="summary-row"><span>WhatsApp</span><strong id="conf-phone"></strong></div>
           </div>
           <div class="whatsapp-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            <div>A confirmation message has been dispatched to your WhatsApp mobile number. A 24-hour reminder will also be automatically sent prior to your appointment.</div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <div>A WhatsApp confirmation has been automatically sent to your number. You will also receive a 24-hour reminder before your slot!</div>
           </div>
           <div class="step-actions dual">
-            <button class="btn-secondary" onclick="showView('mybooking')">MY RESERVATION</button>
+            <button class="btn-secondary" onclick="showView('mybooking')">MY BOOKING</button>
             <button class="btn-gold" onclick="resetBooking()">BOOK ANOTHER SLOT</button>
           </div>
         </div>
@@ -602,14 +575,14 @@
       <!-- VIEW 2: MY BOOKING LOOKUP -->
       <div id="view-mybooking" class="hidden">
         <header class="hero-header">
-          <div class="hero-badge"><span class="pulse-dot"></span> RESERVATION LOOKUP</div>
+          <div class="hero-badge"><span class="pulse-dot"></span> APPOINTMENT LOOKUP</div>
           <h1 class="hero-title">MY <span>BOOKING</span></h1>
-          <p class="hero-subtitle">Retrieve appointment details using your Reservation Code or WhatsApp mobile number.</p>
+          <p class="hero-subtitle">Search your booking by Booking ID or WhatsApp number.</p>
         </header>
-        <div class="glass-card" style="margin-bottom:24px; padding:20px;">
-          <div style="display:flex; gap:12px;">
+        <div class="glass-card" style="margin-bottom:20px; padding:18px;">
+          <div style="display:flex; gap:10px;">
             <input type="text" id="my-search-input" class="form-input" placeholder="e.g. SP-97371, 97371 or WhatsApp number" onkeyup="if(event.key==='Enter') searchBooking()">
-            <button class="btn-gold" style="width:auto; padding:0 28px;" onclick="searchBooking()">SEARCH</button>
+            <button class="btn-gold" style="width:auto; padding:0 24px;" onclick="searchBooking()">SEARCH</button>
           </div>
         </div>
         <div id="my-results"></div>
@@ -617,20 +590,20 @@
 
       <!-- VIEW 3: BARBER ADMIN DASHBOARD -->
       <div id="view-admin" class="hidden">
-        <div id="admin-login-box" class="glass-card" style="max-width:440px; margin:30px auto;">
-          <h2 class="hero-title" style="font-size:1.6rem; margin-bottom:12px;">BARBER PORTAL</h2>
+        <div id="admin-login-box" class="glass-card" style="max-width:400px; margin:20px auto;">
+          <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:12px;">BARBER PORTAL</h2>
           <div class="form-group"><label class="form-label">Username</label><input type="text" id="admin-user" class="form-input" value="admin"></div>
           <div class="form-group"><label class="form-label">Password</label><input type="password" id="admin-pass" class="form-input" value="admin123"></div>
           <button class="btn-gold" onclick="adminLogin()">LOG IN TO DASHBOARD</button>
         </div>
 
         <div id="admin-dash" class="hidden">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h2 style="font-family:var(--font-heading); font-size:1.4rem; font-weight:800;">Barber Management Dashboard</h2>
-            <button class="btn-secondary" style="width:auto; padding:6px 16px;" onclick="adminLogout()">Logout</button>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2 style="font-size:1.3rem; font-weight:700;">Barber Admin Dashboard</h2>
+            <button class="btn-secondary" style="width:auto; height:38px; padding:0 14px; font-size:0.8rem;" onclick="adminLogout()">Logout</button>
           </div>
           <div class="glass-card">
-            <h3 class="section-title">Live Appointment Reservations</h3>
+            <h3 class="section-title">Live Appointments</h3>
             <div id="admin-appointments-table"></div>
           </div>
         </div>
@@ -640,64 +613,6 @@
   </div>
 
   <script>
-    /* Living Ambient Background Canvas */
-    (function initLivingBgCanvas() {
-      const canvas = document.getElementById('living-bg-canvas');
-      const ctx = canvas.getContext('2d');
-      let width, height, time = 0;
-
-      function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      }
-      window.addEventListener('resize', resize);
-      resize();
-
-      const particles = [];
-      const numParticles = Math.floor(Math.min(window.innerWidth / 18, 45));
-
-      for (let i = 0; i < numParticles; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 1.8 + 0.5,
-          speedY: Math.random() * 0.25 + 0.1,
-          swayFreq: Math.random() * 0.02 + 0.005,
-          opacity: Math.random() * 0.4 + 0.1
-        });
-      }
-
-      function drawLivingFrame() {
-        time += 0.01;
-        ctx.fillStyle = '#070709';
-        ctx.fillRect(0, 0, width, height);
-
-        const lightX1 = width * 0.35 + Math.sin(time * 0.3) * (width * 0.15);
-        const lightY1 = height * 0.3 + Math.cos(time * 0.25) * (height * 0.1);
-        const grad1 = ctx.createRadialGradient(lightX1, lightY1, 10, lightX1, lightY1, width * 0.5);
-        grad1.addColorStop(0, 'rgba(196, 177, 151, 0.04)');
-        grad1.addColorStop(0.6, 'rgba(196, 177, 151, 0.01)');
-        grad1.addColorStop(1, 'rgba(7, 7, 9, 0)');
-        ctx.fillStyle = grad1;
-        ctx.fillRect(0, 0, width, height);
-
-        particles.forEach(p => {
-          p.y -= p.speedY;
-          p.x += Math.sin(time + p.swayFreq * 100) * 0.25;
-
-          if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(196, 177, 151, ${p.opacity})`;
-          ctx.fill();
-        });
-
-        requestAnimationFrame(drawLivingFrame);
-      }
-      drawLivingFrame();
-    })();
-
     /* SPA Logic & API Endpoints */
     let selectedService = 'Haircut';
     let selectedDate = '';
@@ -762,7 +677,7 @@
           return;
         }
         if (!isValidIndianPhone(rawPhone)) {
-          alert('Please enter a valid 10-digit Indian WhatsApp mobile number (e.g. 9876543210).');
+          alert('Please enter a valid 10-digit Indian WhatsApp phone number (e.g. 9876543210).');
           return;
         }
         document.getElementById('sum-service').innerText = selectedService;
@@ -845,13 +760,13 @@
       selectedDate = dateStr;
       document.querySelectorAll('.cal-day-cell').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
-      document.getElementById('selected-date-label').innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Selected Date: ` + dateStr;
+      document.getElementById('selected-date-label').innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Selected Date: ` + dateStr;
       fetchSlots(dateStr);
     }
 
     async function fetchSlots(dateStr) {
       const container = document.getElementById('slots-container');
-      container.innerHTML = '<div style="color:var(--text-muted); font-size:0.88rem;">Checking live slot availability...</div>';
+      container.innerHTML = '<div style="color:var(--text-secondary); font-size:0.85rem;">Checking live slot availability...</div>';
       selectedTime = '';
       document.getElementById('btn-to-step3').disabled = true;
 
@@ -861,7 +776,7 @@
         container.innerHTML = '';
 
         if (!data.slots || data.slots.length === 0) {
-          container.innerHTML = '<div class="alert-error">No available time slots found for this date.</div>';
+          container.innerHTML = '<div class="alert-error">No slots available for this date. Please choose another date.</div>';
           return;
         }
 
@@ -912,10 +827,10 @@
 
         const data = await res.json();
         btn.disabled = false;
-        btn.innerHTML = 'CONFIRM RESERVATION';
+        btn.innerHTML = 'CONFIRM SLOT';
 
         if (!res.ok) {
-          errBox.innerText = data.error || 'Failed to confirm reservation';
+          errBox.innerText = data.error || 'Failed to book slot';
           errBox.classList.remove('hidden');
           return;
         }
@@ -936,7 +851,7 @@
         }
       } catch (err) {
         btn.disabled = false;
-        btn.innerHTML = 'CONFIRM RESERVATION';
+        btn.innerHTML = 'CONFIRM SLOT';
         errBox.innerText = 'Connection error. Please try again.';
         errBox.classList.remove('hidden');
       }
@@ -953,10 +868,10 @@
       const q = document.getElementById('my-search-input').value.trim();
       const resContainer = document.getElementById('my-results');
       if (!q) {
-        resContainer.innerHTML = '<div class="alert-error">Please enter your Reservation Code or WhatsApp mobile number.</div>';
+        resContainer.innerHTML = '<div class="alert-error">Please enter your Booking ID or WhatsApp number.</div>';
         return;
       }
-      resContainer.innerHTML = '<div style="color:var(--text-muted); font-size:0.9rem; text-align:center; padding:20px;">Searching reservation record...</div>';
+      resContainer.innerHTML = '<div style="color:var(--text-secondary); font-size:0.85rem; text-align:center; padding:16px;">Searching appointment details...</div>';
 
       try {
         const res = await fetch(`${API_BASE}/bookings/search?query=${encodeURIComponent(q)}`);
@@ -964,48 +879,48 @@
         resContainer.innerHTML = '';
 
         if (!data.bookings || data.bookings.length === 0) {
-          resContainer.innerHTML = '<div class="glass-card" style="text-align:center; padding:28px;"><div style="font-size:1.1rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">No Reservation Found</div><div style="font-size:0.88rem;">Please verify your Reservation Code (e.g. SP-97371 or 97371) or 10-digit mobile number.</div></div>';
+          resContainer.innerHTML = '<div class="glass-card" style="text-align:center; padding:24px;"><div style="font-size:1rem; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">No appointments found</div><div style="font-size:0.85rem;">Please check your Booking ID (e.g. SP-97371) or 10-digit WhatsApp number.</div></div>';
           return;
         }
 
         data.bookings.forEach(b => {
           const card = document.createElement('div');
           card.className = 'glass-card';
-          card.style.marginBottom = '16px';
+          card.style.marginBottom = '14px';
           card.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid var(--border-color); padding-bottom:10px;">
               <div>
-                <span style="font-size:0.7rem; color:var(--text-dim); letter-spacing:0.1em; display:block;">RESERVATION CODE</span>
-                <strong style="font-family:var(--font-heading); font-size:1.25rem; color:var(--accent-gold);">${b.bookingId}</strong>
+                <span style="font-size:0.7rem; color:var(--text-secondary); display:block;">BOOKING ID</span>
+                <strong style="font-size:1.15rem; color:var(--accent-champagne);">${b.bookingId}</strong>
               </div>
               <span class="badge-status status-${b.status}">${b.status.toUpperCase()}</span>
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.92rem; margin-bottom:14px;">
-              <div><span style="color:var(--text-muted); font-size:0.8rem; display:block;">Service</span><strong style="color:var(--text-main);">${b.service}</strong></div>
-              <div><span style="color:var(--text-muted); font-size:0.8rem; display:block;">Customer</span><strong style="color:var(--text-main);">${b.customerName}</strong></div>
-              <div><span style="color:var(--text-muted); font-size:0.8rem; display:block;">Date</span><strong style="color:var(--text-main);">${b.appointmentDate}</strong></div>
-              <div><span style="color:var(--text-muted); font-size:0.8rem; display:block;">Time Slot</span><strong style="color:var(--accent-gold);">${b.appointmentTime}</strong></div>
-              <div style="grid-column: span 2;"><span style="color:var(--text-muted); font-size:0.8rem; display:block;">WhatsApp Mobile</span><strong style="color:var(--text-main);">${b.whatsappNumber}</strong></div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.88rem; margin-bottom:12px;">
+              <div><span style="color:var(--text-secondary); font-size:0.78rem; display:block;">Service</span><strong style="color:var(--text-primary);">${b.service}</strong></div>
+              <div><span style="color:var(--text-secondary); font-size:0.78rem; display:block;">Customer</span><strong style="color:var(--text-primary);">${b.customerName}</strong></div>
+              <div><span style="color:var(--text-secondary); font-size:0.78rem; display:block;">Date</span><strong style="color:var(--text-primary);">${b.appointmentDate}</strong></div>
+              <div><span style="color:var(--text-secondary); font-size:0.78rem; display:block;">Time Slot</span><strong style="color:var(--accent-champagne);">${b.appointmentTime}</strong></div>
+              <div style="grid-column: span 2;"><span style="color:var(--text-secondary); font-size:0.78rem; display:block;">WhatsApp Number</span><strong style="color:var(--text-primary);">${b.whatsappNumber}</strong></div>
             </div>
-            ${b.status === 'confirmed' ? `<button class="btn-secondary" style="width:100%; margin-top:6px; border-color:rgba(239,68,68,0.3); color:#f87171;" onclick="cancelAppt('${b.bookingId}')">CANCEL THIS RESERVATION</button>` : ''}
+            ${b.status === 'confirmed' ? `<button class="btn-secondary" style="width:100%; height:42px; border-color:rgba(239,68,68,0.3); color:var(--status-red);" onclick="cancelAppt('${b.bookingId}')">CANCEL APPOINTMENT</button>` : ''}
           `;
           resContainer.appendChild(card);
         });
       } catch (err) {
-        resContainer.innerHTML = '<div class="alert-error">Failed to retrieve reservation. Connection error.</div>';
+        resContainer.innerHTML = '<div class="alert-error">Failed to search booking. Connection error.</div>';
       }
     }
 
     async function cancelAppt(bookingId) {
-      if (!confirm('Are you sure you want to cancel this appointment reservation?')) return;
+      if (!confirm('Are you sure you want to cancel this appointment?')) return;
       try {
         const res = await fetch(`${API_BASE}/bookings/${bookingId}/cancel`, { method: 'POST' });
         if (res.ok) {
-          alert('Reservation cancelled successfully. The slot is now available again.');
+          alert('Appointment cancelled successfully. Slot is now free again.');
           searchBooking();
           if (adminToken) loadAdminAppointments();
         }
-      } catch (err) { alert('Failed to cancel reservation'); }
+      } catch (err) { alert('Failed to cancel appointment'); }
     }
 
     let adminToken = '';
@@ -1040,7 +955,7 @@
         const tbl = document.getElementById('admin-appointments-table');
         let html = '<table class="admin-table"><thead><tr><th>ID</th><th>Customer</th><th>Service</th><th>Date & Time</th><th>Status</th></tr></thead><tbody>';
         data.appointments.forEach(a => {
-          html += `<tr><td><strong style="color:var(--accent-gold);">${a.bookingId}</strong></td><td>${a.customerName} (${a.whatsappNumber})</td><td>${a.service}</td><td>${a.appointmentDate} ${a.appointmentTime}</td><td><span class="badge-status status-${a.status}">${a.status}</span></td></tr>`;
+          html += `<tr><td><strong style="color:var(--accent-champagne);">${a.bookingId}</strong></td><td>${a.customerName} (${a.whatsappNumber})</td><td>${a.service}</td><td>${a.appointmentDate} ${a.appointmentTime}</td><td><span class="badge-status status-${a.status}">${a.status}</span></td></tr>`;
         });
         html += '</tbody></table>';
         tbl.innerHTML = html;
@@ -1057,7 +972,7 @@
     /* Init State */
     const todayStr = new Date().toISOString().split('T')[0];
     selectedDate = todayStr;
-    document.getElementById('selected-date-label').innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Selected Date: ` + todayStr;
+    document.getElementById('selected-date-label').innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Selected Date: ` + todayStr;
     renderCalendar();
     fetchSlots(todayStr);
   </script>
